@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :user_sessions
+  resources :users
+
+  match 'calendar' => 'main#calendar', via: %i{get put post patch delete}
+
+  match 'signin' => "user_sessions#new", as: :signin, via: %i{get put post patch delete}
+  match 'signout' => "user_sessions#destroy", as: :signout, via: %i{get put post patch delete}
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
