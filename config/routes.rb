@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :user_sessions
   resources :users
+  resources :events
 
   match 'calendar' => 'main#calendar', via: %i{get put post patch delete}
 

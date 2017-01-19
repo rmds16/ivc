@@ -11,7 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170115211951) do
+ActiveRecord::Schema.define(version: 20170118175605) do
+
+  create_table "events", force: :cascade do |t|
+    t.string   "title",               limit: 255
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "where",               limit: 255
+    t.string   "post_map_ref",        limit: 255
+    t.string   "country",             limit: 255
+    t.string   "eventbrite_id",       limit: 255
+    t.string   "web_link",            limit: 255
+    t.string   "venue_web_link",      limit: 255
+    t.text     "public_description",  limit: 65535
+    t.text     "private_description", limit: 65535
+    t.text     "organiser",           limit: 65535
+    t.text     "how_to_find_us",      limit: 65535
+    t.string   "fee",                 limit: 255
+    t.datetime "book_by_date"
+    t.integer  "attendee_limit",      limit: 4
+    t.integer  "user_id",             limit: 4
+    t.integer  "display_level",       limit: 4
+    t.boolean  "allow_bookings",                    default: false
+    t.boolean  "featured_event",                    default: false
+    t.boolean  "approved",                          default: false
+    t.boolean  "show_to_users"
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
+  end
 
   create_table "user_sessions", force: :cascade do |t|
     t.string   "session_id", limit: 255,   null: false
