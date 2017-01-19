@@ -14,3 +14,22 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require moment
+//= require fullcalendar
+
+$(document).ready(function() {
+
+  $('#calendar').fullCalendar({
+    editable: true,
+  	selectable: true,
+    eventSources: [
+      // your event source
+      {
+        url: '/events/',
+        color: 'yellow',
+        textColor: 'black'
+      }
+    ]
+  });
+
+});
