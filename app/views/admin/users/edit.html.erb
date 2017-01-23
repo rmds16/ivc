@@ -1,0 +1,7 @@
+<h1>Edit My Account</h1>
+
+<%= form_for @user, url: admin_user_path do |f| %>
+  <%= render :partial => "form", :object => f %>
+  <br />
+  <%= f.submit "Update" %>
+<% end %>

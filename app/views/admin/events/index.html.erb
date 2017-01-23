@@ -1,0 +1,19 @@
+<%= will_paginate @events %>
+
+<table>
+ <tr>
+  <td>Title</td>
+  <td>Start Date</td>
+  <td>End Date</td>
+ </tr>
+<% @events.each do |event| %>
+ <tr>
+  <td><%= event.title %></td>
+  <td><%= event.start_date %></td>
+  <td><%= event.end_date %></td>
+  <td><%= link_to "Edit", edit_admin_event_path(event) %></td>
+ </tr>
+<% end %>
+</table>
+
+<%= will_paginate @events %>

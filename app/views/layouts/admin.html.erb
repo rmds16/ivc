@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ivc Admin</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <li><%= link_to "Users", admin_users_path %></li>
+  <li><%= link_to "Events", admin_events_path %></li>
+  <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+  <br />
+  <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+<div class="container">
+<%= yield %>
+</div>
+
+</body>
+</html>
