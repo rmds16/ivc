@@ -29,6 +29,7 @@ gem 'mysql2', '0.4.5'
 
 gem 'authlogic', '3.5.0'
 
+gem 'cancancan', '1.15.0'
 
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
