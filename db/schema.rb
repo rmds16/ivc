@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170118175605) do
+ActiveRecord::Schema.define(version: 20170122145725) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title",               limit: 255
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20170118175605) do
     t.boolean  "allow_bookings",                    default: false
     t.boolean  "featured_event",                    default: false
     t.boolean  "approved",                          default: false
-    t.boolean  "show_to_users"
+    t.boolean  "show_to_users",                     default: false
     t.datetime "created_at",                                        null: false
     t.datetime "updated_at",                                        null: false
   end
@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 20170118175605) do
     t.string   "persistence_token",   limit: 255
     t.string   "single_access_token", limit: 255
     t.string   "perishable_token",    limit: 255
-    t.integer  "login_count",         limit: 4,   default: 0, null: false
-    t.integer  "failed_login_count",  limit: 4,   default: 0, null: false
+    t.integer  "login_count",         limit: 4,   default: 0,     null: false
+    t.integer  "failed_login_count",  limit: 4,   default: 0,     null: false
     t.datetime "last_request_at"
     t.datetime "current_login_at"
     t.datetime "last_login_at"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20170118175605) do
     t.string   "last_login_ip",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin",                           default: false
   end
 
 end
