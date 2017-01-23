@@ -2,6 +2,10 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
+    if params['date']
+      @event.start_date = Date.parse(params['date']) 
+      @event.end_date = Date.parse(params['date'])
+    end
   end
 
   def index
