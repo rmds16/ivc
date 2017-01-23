@@ -29,7 +29,11 @@ $(document).ready(function() {
         color: 'yellow',
         textColor: 'black'
       }
-    ]
+    ],
+
+    dayClick: function(date, jsEvent, view) {
+      window.location.href = "events/new?date=" + date.format();
+    }
   });
 
 });
