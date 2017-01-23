@@ -10,7 +10,6 @@ class EventsController < ApplicationController
   end
 
   def index
-    render json: Event.all.to_json(methods: :start )
     return [] unless params['start'] && params['end']
 
     start_date = Date.parse(params['start'])
