@@ -1,0 +1,56 @@
+<h1>Event Details</h1>
+
+<ul>
+<li>Title: <%= @event.title %></li>
+<li>Start: <%= @event.start_date %></li>
+<li>End: <%= @event.end_date %></li>
+</ul>
+
+<ul>
+<li>Where: <%= @event.where %></li>
+<li>Post map ref: <%= @event.post_map_ref %></li>
+<li>Country: <%= @event.country %></li>
+</ul>
+
+<ul>
+<li>Eventbrite id: <%= @event.eventbrite_id %></li>
+<li>Web link: <%= @event.web_link %></li>
+<li>Venue web link: <%= @event.venue_web_link %></li>
+</ul>
+
+<ul>
+<li>Public description: <%= @event.public_description %></li>
+<li>Private description: <%= @event.private_description %></li>
+</ul>
+
+<ul>
+<li>How to find us: <%= @event.how_to_find_us %></li>
+</ul>
+
+<ul>
+<li>Organiser: <%= @event.organiser %></li>
+<li>Fee: <%= @event.fee %></li>
+<li>Book by date: <%= @event.book_by_date %></li>
+<li>Attendee limit: <%= @event.attendee_limit %></li>
+</ul>
+
+<hr/>
+
+<h3>Permissions</h3>
+
+<ul>
+<li>Event owner: <%= @event.user.full_name if @event.user %></li>
+</ul>
+
+<ul>
+<li>Display to: <%= @event.display_level %></li>
+</ul>
+
+<ul>
+<li>Allow bookings: <%= @event.allow_bookings %></li>
+<li>Featured event: <%= @event.featured_event %></li>
+<li>Approved: <%= @event.approved %></li>
+<li>Show to users: <%= @event.show_to_users %></li>
+</ul>
+
+<%= link_to "Edit", edit_event_path(@event) if can? :edit, @event %>
