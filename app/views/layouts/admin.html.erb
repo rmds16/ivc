@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <li><%= link_to "Home", calendar_path %></li>
   <li><%= link_to "Users", admin_users_path %></li>
   <li><%= link_to "Events", admin_events_path %></li>
   <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
