@@ -32,6 +32,8 @@ gem 'authlogic', '3.5.0'
 
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+gem 'fullcalendar-rails', '3.1.0.0'
+gem 'momentjs-rails', '2.17.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
