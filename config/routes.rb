@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     root "users#index"
   end
 
+  namespace :my_account do
+    resources :users
+    resources :events
+    root "users#show"
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
