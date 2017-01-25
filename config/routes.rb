@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :user_sessions
   resources :users
-  resources :events
   resources :events do
     get :signup
   end
@@ -20,9 +19,10 @@ Rails.application.routes.draw do
   end
 
   namespace :my_account do
+    match '/' => 'dashboard#index', as: 'dashboard', via: %i{get put post patch delete}
     resources :users
     resources :events
-    root "users#show"
+    root "dashboard#index"
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
