@@ -36,8 +36,9 @@ class Ability
       can :read, :none
       can [:create, :destroy], UserSession
       can :create, Event
-      can :read, Event, approved?: true
+      can [:read, :signup], Event, approved?: true
       can [:create], User
+      can [:read, :edit, :update], User, id: user.id
       can [:destroy, :edit, :update], Event, user_id: user.id
     end
   end

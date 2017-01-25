@@ -46,4 +46,28 @@ class EventsController < ApplicationController
       render action: :edit
     end
   end
+
+  def signup
+    @event = Event.find_by(id: params[:event_id])
+
+    if @event.attendees.include?(current_user)
+      flash[:notice] = "You are already subscribed to this event"
+      redirect_to event_path(@event)
+      return
+    end
+
+    if @event.attendee_limit.to_i > 0
+      if @event.attendees.count < @event.attendee_limit.to_i
+        @event.attendees << current_user
+        redirect_to calendar_path
+        return
+      else
+        flash[:notice] = "Event full!"
+        redirect_to event_path(@event)
+        return
+      end
+    end
+    flash[:notice] = "An error has occurred, unable to subscribe to event"
+    redirect_to event_path(@event)
+  end
 end
