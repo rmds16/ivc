@@ -34,4 +34,13 @@ class ApplicationController < ActionController::Base
       redirect_to signin_path
     end
   end
+
+  def signed_in_admin_user
+    if current_user && !current_user.admin?
+      redirect_to root_path
+    elsif !current_user
+      store_location
+      redirect_to signin_path
+    end
+  end
 end
