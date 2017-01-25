@@ -1,0 +1,20 @@
+<%= will_paginate @events %>
+
+<table>
+ <tr>
+  <td>Title</td>
+  <td>Start Date</td>
+  <td>End Date</td>
+ </tr>
+<% @events.each do |event| %>
+ <tr>
+  <td><%= event.title %></td>
+  <td><%= event.start_date %></td>
+  <td><%= event.end_date %></td>
+  <td><%= link_to "Show", my_account_event_path(event) %></td>
+  <td><%= link_to "Remove", my_account_event_path(event), { method: "delete"} %></td>
+ </tr>
+<% end %>
+</table>
+
+<%= will_paginate @events %>
