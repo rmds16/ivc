@@ -36,6 +36,8 @@ gem 'cancancan', '1.15.0'
 gem 'fullcalendar-rails', '3.1.0.0'
 gem 'momentjs-rails', '2.17.1'
 
+gem 'jquery-turbolinks', '2.1.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

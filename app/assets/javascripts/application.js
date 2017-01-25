@@ -11,9 +11,8 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
-//= require_tree .
 //= require moment
 //= require fullcalendar
 
@@ -21,7 +20,7 @@ $(document).ready(function() {
 
   $('#calendar').fullCalendar({
     editable: true,
-  	selectable: true,
+    selectable: true,
     eventSources: [
       // your event source
       {
@@ -37,3 +36,6 @@ $(document).ready(function() {
   });
 
 });
+
+//= require turbolinks
+//= require_tree .
