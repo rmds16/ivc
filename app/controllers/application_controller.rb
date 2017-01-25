@@ -27,4 +27,11 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
+
+  def signed_in_user
+    unless current_user
+      store_location
+      redirect_to signin_path
+    end
+  end
 end
