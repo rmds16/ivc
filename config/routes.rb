@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get :signup
   end
 
+  root "main#calendar"
 
   match 'calendar' => 'main#calendar', via: %i{get put post patch delete}
 
