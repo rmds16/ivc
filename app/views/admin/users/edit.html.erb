@@ -1,7 +1,13 @@
-<h1>Edit My Account</h1>
+<div class="page-header">
+ <h3>Edit Account</h3>
+</div>
 
-<%= form_for @user, url: admin_user_path do |f| %>
-  <%= render :partial => "form", :object => f %>
+<%= bootstrap_form_for @user, url: admin_user_path do |f| %>
+  <%= render partial: "helpers/user_fields", locals: { form: f } %>
+  <%= f.form_group :admin, label: { text: "Admin" } do %>
+  <%= f.radio_button :admin, true, label: "True", inline: true %>
+  <%= f.radio_button :admin, false, label: "False", inline: true %>
+ <% end %>
   <br />
   <%= f.submit "Update" %>
 <% end %>

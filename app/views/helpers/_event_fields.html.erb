@@ -1,0 +1,11 @@
+<%= f.text_field :title %>
+<%= f.datetime_select(:start_date, :default => DateTime.now, :order =>  [:day, :month, :year]) %>
+<%= f.datetime_select(:end_date, :default => DateTime.now, :order =>  [:day, :month, :year]) %>
+<%= f.text_area :public_description %>
+<%= f.text_field :venue_web_link %>
+<%= f.text_field :organiser %>
+<%= f.date_select(:book_by_date, :default => DateTime.now, :order =>  [:day, :month, :year]) %>
+<%= f.form_group :featured_event, label: { text: "Featured event" } do %>
+  <%= f.radio_button :featured_event, true, label: "True", inline: true %>
+  <%= f.radio_button :featured_event, false, label: "False", inline: true %>
+ <% end %>

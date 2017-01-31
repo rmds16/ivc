@@ -51,6 +51,7 @@ GEM
       sass (>= 3.3.4)
     bootstrap-sass-extras (0.0.7)
       rails (>= 3.1.0)
+    bootstrap_form (2.5.3)
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (1.15.0)

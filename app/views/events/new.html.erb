@@ -2,6 +2,8 @@
 
 <%= form_for @event do |f| %>
   <%= render partial: 'event_fields', locals: { f: f } %>
+<%= bootstrap_form_for @event do |f| %>
+  <%= render partial: 'helpers/event_fields', locals: { f: f } %>
   <br />
   <%= f.submit "Create" %>
 <% end %>
