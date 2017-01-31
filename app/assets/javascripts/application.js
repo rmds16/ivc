@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require bootstrap
 //= require moment
 //= require fullcalendar
 
@@ -25,7 +26,6 @@ $(document).ready(function() {
       // your event source
       {
         url: '/events/',
-        color: 'yellow',
         color: 'white',
         textColor: 'black'
       }

@@ -1,0 +1,9 @@
+<div class="page-header">
+  <h3>New Event</h3>
+</div>
+
+<%= bootstrap_form_for @event, url: admin_events_path do |f| %>
+  <%= render partial: 'helpers/event_fields', locals: { f: f } %>
+  <br />
+  <%= f.submit "Create" %>
+<% end %>

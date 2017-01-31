@@ -1,0 +1,45 @@
+<div class="page-header">
+  <h3>Event Details</h3>
+</div>
+
+<div class="row">
+ <div class="col-xs-2">Title:</div>
+ <div class="col-xs-10"><%= @event.title %></div>
+</div>
+<div class="row">
+ <div class="col-xs-2">Start: </div>
+ <div class="col-xs-10"> <%= @event.start_date.to_formatted_s(:long) %></div>
+</div>
+<div class="row">
+ <div class="col-xs-2">End: </div>
+ <div class="col-xs-10"> <%= @event.end_date.to_formatted_s(:long) %></div>
+</div>
+<br/>
+<div class="row">
+ <div class="col-xs-2">Venue web link: </div>
+ <div class="col-xs-10"> <%= @event.venue_web_link %></div>
+</div>
+<br/>
+<div class="row">
+ <div class="col-xs-2">Public description:</div>
+ <div class="col-xs-10"><%= @event.public_description %></div>
+</div>
+<br/>
+<div class="row">
+ <div class="col-xs-2">Organiser: </div>
+ <div class="col-xs-10"> <%= @event.organiser %></div>
+</div>
+<div class="row">
+ <div class="col-xs-2">Book by date: </div>
+ <div class="col-xs-10"> <%= @event.book_by_date %></div>
+</div>
+<hr/>
+<h3>Attendees</h3>
+<br/>
+<p>Count: <%= @event.attendees.count %></p>
+<br/>
+<% @event.attendees.each do |user| %>
+<div class="row">
+  <div class="col-sm-12"><%= user.full_name %></div>
+</div>
+<% end %>
