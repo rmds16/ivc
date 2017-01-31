@@ -57,8 +57,7 @@ class EventsController < ApplicationController
     end
 
     flash[:notice] = "An error has occurred, unable to subscribe to event" unless @event.attendees << current_user
-    
-    end
+
     redirect_to event_path(@event)
   end
 
