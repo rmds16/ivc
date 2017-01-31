@@ -1,12 +1,17 @@
-<%= will_paginate @users %>
+<div class="page-header">
+ <h3>Users</h3>
+</div>
 
-<table>
- <tr>
-  <td>First Name</td>
-  <td>Surname</td>
-  <td>Email</td>
-  <td>Admin</td>
- </tr>
+<div class="table-responsive">
+<table class="table table-bordered table-striped">
+ <thead>
+  <th>First Name</th>
+  <th>Surname</th>
+  <th>Email</th>
+  <th>Admin</th>
+  <th></th>
+ </thead>
+ <tbody>
 <% @users.each do |user| %>
  <tr>
   <td><%= user.first_name %></td>
@@ -16,6 +21,12 @@
   <td><%= link_to "Edit", edit_admin_user_path(user) %></td>
  </tr>
 <% end %>
+</tbody>
 </table>
+</div>
 
-<%= will_paginate @users %>
+<div class="pull-right">
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
+</div>
+
+<%= button_to "New User", new_admin_user_path, method: :get %>

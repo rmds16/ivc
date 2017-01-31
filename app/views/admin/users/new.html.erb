@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h3>Register</h3>
+</div>
+
+<%= bootstrap_form_for @user, url: admin_users_path do |f| %>
+  <%= render 'helpers/user_fields', form: f %>
+  <%= f.submit "Register" %>
+<% end %>
