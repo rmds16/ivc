@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
 	  end: end_date,
 	  url: Rails.application.routes.url_helpers.event_path(id),
 	  color: featured_event? ? 'yellow' : 'blue',
+	  color: featured_event? ? 'yellow' : '',
     }
   end
 

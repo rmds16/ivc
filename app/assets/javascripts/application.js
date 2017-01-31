@@ -26,6 +26,7 @@ $(document).ready(function() {
       {
         url: '/events/',
         color: 'yellow',
+        color: 'white',
         textColor: 'black'
       }
     ],
