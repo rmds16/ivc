@@ -1,7 +1,5 @@
 <h1>Edit Event</h1>
 
-<%= form_for @event do |f| %>
-  <%= render partial: 'event_fields', locals: { f: f } %>
 <%= bootstrap_form_for @event do |f| %>
   <%= render partial: 'helpers/event_fields', locals: { f: f } %>
   <br />
