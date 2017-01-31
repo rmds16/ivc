@@ -16,7 +16,6 @@ class EventsController < ApplicationController
     start_date = Date.parse(params['start'])
     end_date = Date.parse(params['end'])
 
-    render json: Event.where(start_date: start_date..end_date).to_json
     render json: Event.where(start_date: start_date..end_date).to_json(current_user)
   end
 
