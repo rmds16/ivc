@@ -56,18 +56,9 @@ class EventsController < ApplicationController
       return
     end
 
-    if @event.attendee_limit.to_i > 0
-      if @event.attendees.count < @event.attendee_limit.to_i
-        @event.attendees << current_user
-        redirect_to calendar_path
-        return
-      else
-        flash[:notice] = "Event full!"
-        redirect_to event_path(@event)
-        return
-      end
+    flash[:notice] = "An error has occurred, unable to subscribe to event" unless @event.attendees << current_user
+    
     end
-    flash[:notice] = "An error has occurred, unable to subscribe to event"
     redirect_to event_path(@event)
   end
 
