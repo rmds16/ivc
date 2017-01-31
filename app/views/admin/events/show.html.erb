@@ -40,6 +40,6 @@
 <br/>
 <% @event.attendees.each do |user| %>
 <div class="row">
-  <div class="col-sm-12"><%= user.full_name %></div>
+  <div class="col-sm-12"><%= user.full_name %> <%= link_to "Remove", admin_event_leave_path(@event, user_id: user.id), data: { confirm: "Remove #{user.full_name}?" } %></div>
 </div>
 <% end %>
