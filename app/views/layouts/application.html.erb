@@ -8,9 +8,6 @@
   <link href="http://www.hertsbedsivc.co.uk/css/new_ivc_style_1.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
 <div align="center" >
 <div class="wrapper">
 <div id="header">
@@ -113,6 +110,9 @@
         <div class="cbox">
           <%= render 'layouts/calendar_header' %>
           <div class="container" style="width: 100%; white-space: wrap">
+            <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
             <%= yield %>
           </div>
     </div>

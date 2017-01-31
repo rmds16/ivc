@@ -16,7 +16,7 @@ class Admin::UsersController < AdminController
   def update
     @user = User.find_by(id: params[:id])
     if @user.update_attributes(user_params)
-      flash[:notice] = "Account updated!"
+      flash[:success] = "Account updated!"
       redirect_to admin_users_path
     else
       render action: :edit
@@ -26,7 +26,7 @@ class Admin::UsersController < AdminController
   def create
     @user = User.new(user_params)
     if @user.save!
-      flash[:notice] = "Account registered!"
+      flash[:success] = "Account registered!"
       redirect_back_or_default admin_users_path
     else
       render action: :new

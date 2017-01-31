@@ -20,7 +20,7 @@ class Admin::EventsController < AdminController
   def update
     @event = Event.find_by(id: params[:id])
     if @event.update_attributes(event_params)
-      flash[:notice] = "Event updated!"
+      flash[:success] = "Event updated!"
       redirect_to admin_events_path
     else
       render action: :edit
@@ -36,7 +36,7 @@ class Admin::EventsController < AdminController
   def create
     @event = Event.new(event_params)
     if @event.save!
-      flash[:notice] = "Event created!"
+      flash[:success] = "Event created!"
       redirect_back_or_default admin_event_path
     else
       render action: :new

@@ -12,7 +12,7 @@ class MyAccount::UsersController < MyAccountController
   def update
     @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user].permit!)
-      flash[:notice] = "Account updated!"
+      flash[:success] = "Account updated!"
       redirect_to my_account_show_user_path
     else
       render action: :edit

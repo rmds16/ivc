@@ -22,7 +22,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save!
-      flash[:notice] = "Event created!"
+      flash[:success] = "Event created!"
       redirect_back_or_default calendar_path
     else
       render action: :new
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
   def update
     @event = Event.find_by(id: params[:id])
     if @event.update_attributes(event_params)
-      flash[:notice] = "Event updated!"
+      flash[:success] = "Event updated!"
       redirect_to calendar_path
     else
       render action: :edit
@@ -51,12 +51,12 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:event_id])
 
     if @event.attendees.include?(current_user)
-      flash[:notice] = "You are already subscribed to this event"
+      flash[:success] = "You are already subscribed to this event"
       redirect_to event_path(@event)
       return
     end
 
-    flash[:notice] = "An error has occurred, unable to subscribe to event" unless @event.attendees << current_user
+    flash[:danger] = "An error has occurred, unable to subscribe to event" unless @event.attendees << current_user
     
     redirect_to event_path(@event)
   end
@@ -71,12 +71,12 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:event_id])
 
     unless @event.attendees.include?(current_user)
-      flash[:notice] = "You are already unsubscribed from this event"
+      flash[:success] = "You are already unsubscribed from this event"
       redirect_to event_path(@event)
       return
     end
 
-    flash[:notice] = "An error has occurred, unable to unsubscribe from event" unless @event.attendees.delete(current_user)
+    flash[:danger] = "An error has occurred, unable to unsubscribe from event" unless @event.attendees.delete(current_user)
     
     redirect_to event_path(@event)
   end

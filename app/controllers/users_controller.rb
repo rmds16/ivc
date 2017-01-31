@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save!
-      flash[:notice] = "Account registered!"
+      flash[:success] = "Account registered!"
       redirect_back_or_default calendar_path
     else
       render action: :new
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(user_params)
-      flash[:notice] = "Account updated!"
+      flash[:success] = "Account updated!"
       redirect_to calendar_path
     else
       render action: :edit
