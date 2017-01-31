@@ -38,6 +38,10 @@ gem 'momentjs-rails', '2.17.1'
 
 gem 'jquery-turbolinks', '2.1.0'
 
+gem 'bootstrap-sass'
+gem 'bootstrap-sass-extras'
+gem 'autoprefixer-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
