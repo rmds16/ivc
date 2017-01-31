@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :events do
     get :signup
+    get :leave
   end
 
   root "main#calendar"

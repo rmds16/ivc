@@ -57,7 +57,27 @@ class EventsController < ApplicationController
     end
 
     flash[:notice] = "An error has occurred, unable to subscribe to event" unless @event.attendees << current_user
+    
+    redirect_to event_path(@event)
+  end
 
+  def destroy
+    event = Event.find_by(id: params['id'])
+    event.destroy if event
+    redirect_to calendar_path
+  end
+
+  def leave
+    @event = Event.find_by(id: params[:event_id])
+
+    unless @event.attendees.include?(current_user)
+      flash[:notice] = "You are already unsubscribed from this event"
+      redirect_to event_path(@event)
+      return
+    end
+
+    flash[:notice] = "An error has occurred, unable to unsubscribe from event" unless @event.attendees.delete(current_user)
+    
     redirect_to event_path(@event)
   end
 
