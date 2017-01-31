@@ -60,7 +60,7 @@
    <%= link_to "Edit", edit_event_path(@event), method: :get, class: 'pull-left' if can? :edit, @event %>
   </div>
   <div class="col-xs-6">
-   <%= link_to "Delete", event_path(@event), method: "delete", class: 'pull-left' if can? :destroy, @event %>
+   <%= link_to "Delete", event_path(@event), method: "delete", class: 'pull-left', data: { confirm: "Remove #{@event.title}?" } if can? :destroy, @event %>
   </div>
  </div>
  <div class="col-xs-10">
