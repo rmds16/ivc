@@ -1,4 +1,7 @@
-<h1>Edit My Account</h1>
+<%
+   @title = "My Profile"
+   @title_link = edit_my_account_user_path
+%>
 
 <%= bootstrap_form_for @user do |f| %>
   <%= render partial: "helpers/user_fields", locals: { form: f } %>

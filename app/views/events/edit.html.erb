@@ -1,4 +1,7 @@
-<h1>Edit Event</h1>
+<%
+   @title = "Edit Event"
+   @title_link = edit_event_path(@event)
+%>
 
 <%= bootstrap_form_for @event do |f| %>
   <%= render partial: 'helpers/event_fields', locals: { f: f } %>

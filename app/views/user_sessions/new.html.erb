@@ -1,4 +1,7 @@
-<h1>Login</h1>
+<%
+   @title = "Login"
+   @title_link = signin_path
+%>
 
 <%= bootstrap_form_for @user_session do |f| %>
   <%= f.text_field :email %>
