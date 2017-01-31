@@ -20,7 +20,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params[:event].permit!)
+    @event = Event.new(event_params)
     if @event.save!
       flash[:notice] = "Event created!"
       redirect_back_or_default calendar_path
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
   
   def update
     @event = Event.find_by(id: params[:id])
-    if @event.update_attributes(params[:event].permit!)
+    if @event.update_attributes(event_params)
       flash[:notice] = "Event updated!"
       redirect_to calendar_path
     else
@@ -69,5 +69,11 @@ class EventsController < ApplicationController
     end
     flash[:notice] = "An error has occurred, unable to subscribe to event"
     redirect_to event_path(@event)
+  end
+
+  private
+
+  def event_params
+    params.require(:event).permit(:title, :start_date, :end_date, :public_description, :venue_web_link, :organiser, :book_by_date, :featured_event)
   end
 end
