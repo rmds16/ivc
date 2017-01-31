@@ -9,4 +9,8 @@ class User < ActiveRecord::Base
   def full_name
     "#{self.first_name} #{self.surname}"
   end
+
+  def future_events
+    attended_events.where("start_date > ?", Time.now ).order(:start_date)
+  end
 end
