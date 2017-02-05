@@ -37,9 +37,11 @@ class Ability
       can [:create, :destroy], UserSession
       can :create, Event
       can [:read, :signup], Event
-      can [:create], User
+      can [:create, :user_details], User
       can [:read, :edit, :update], User, id: user.id
-      can [:destroy, :edit, :update], Event, user_id: user.id
+      can [:destroy, :edit, :update], Event do |event|
+        event.user_authorised?(user)
+      end
     end
   end
 end

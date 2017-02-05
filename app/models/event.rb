@@ -13,4 +13,8 @@ class Event < ActiveRecord::Base
     }
   end
 
+  def user_authorised?(user)
+    user_id == user.id || organiser == user.id || second_organiser == user.id
+  end
+
 end
