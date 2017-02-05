@@ -12,7 +12,7 @@ class Event < ActiveRecord::Base
 	  start: start_date,
 	  end: end_date,
 	  url: current_user.present? ? Rails.application.routes.url_helpers.event_path(id) : '',
-	  color: featured_event? ? 'yellow' : '',
+	  className: featured_event? ? 'featured-event' : 'standard-event'
     }
   end
 
