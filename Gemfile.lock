@@ -213,7 +213,7 @@ DEPENDENCIES
   rails (= 4.2.7.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  select2-rails
+  select2-rails (= 4.0.3)
   spring
   sqlite3
   therubyracer
