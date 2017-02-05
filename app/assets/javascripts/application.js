@@ -25,6 +25,7 @@ $(document).ready(function() {
   $('#calendar').fullCalendar({
     editable: true,
     selectable: true,
+    displayEventTime: false,
     eventSources: [
       // your event source
       {
