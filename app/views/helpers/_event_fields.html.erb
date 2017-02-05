@@ -29,7 +29,7 @@
   <div class="col-sm-12">
     <div class="col-sm-6">
       <div class="row">
-        <div class="col-sm-12"><%= f.select :organiser, @organisers, { include_blank: true }, { class: 'select2' } %></div>
+        <div class="col-sm-12"><%= f.select :organiser_id, @organisers, { include_blank: true }, { class: 'select2' } %></div>
 	  </div>
 	  <div class="row">
 	    <div class="col-sm-12"><%= f.text_field :organiser_email %></div>
@@ -40,7 +40,7 @@
 	</div>
 	<div class="col-sm-6">
 	  <div class="row">
-		<div class="col-sm-12"><%= f.select :second_organiser, @organisers, { include_blank: true }, { class: 'select2', default: nil } %></div>
+		<div class="col-sm-12"><%= f.select :second_organiser_id, @organisers, { include_blank: true }, { class: 'select2', default: nil } %></div>
 	  </div>
 	  <div class="row">
 		<div class="col-sm-12"><%= f.text_field :second_organiser_email %></div>

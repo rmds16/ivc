@@ -2,13 +2,15 @@ class User < ActiveRecord::Base
 
   has_many :events
   has_and_belongs_to_many :attended_events, class_name: 'Event'
+  belongs_to :event
 
   acts_as_authentic do |c|
   end
 
   def as_json(options = {})
     {
-	  email: email
+	  email: email,
+	  phone: phone
     }
   end
 

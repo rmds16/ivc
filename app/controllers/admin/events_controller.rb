@@ -4,8 +4,9 @@ class Admin::EventsController < AdminController
   def new
     @organisers = User.all.map { |u| [u.full_name, u.id] }
     @event = Event.new
-    @event.organiser = current_user.id
+    @event.organiser_id = current_user.id
     @event.organiser_email = current_user.email
+    @event.organiser_phone = current_user.phone
   end
 
   def show
@@ -65,6 +66,6 @@ class Admin::EventsController < AdminController
   private
 
   def event_params
-    params.require(:event).permit(:title, :start_date, :end_date, :public_description, :venue_web_link, :organiser, :book_by_date, :featured_event)
+    params.require(:event).permit(:title, :start_date, :public_description, :where, :post_map_ref, :organiser_id, :organiser_email, :organiser_phone, :second_organiser_id, :second_organiser_email, :second_organiser_phone, :book_by_date, :featured_event)
   end
 end

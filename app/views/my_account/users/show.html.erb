@@ -14,8 +14,13 @@
 </div>
 
 <div class="row">
+  <div class="col-sm-2">Phone:</div>
+  <div class="col-sm-10"><%=h @user.phone %></div>
+</div>
+
+<div class="row">
   <div class="col-sm-2">Last login at:</div>
-  <div class="col-sm-10"><%=h @user.last_login_at %></div>
+  <div class="col-sm-10"><%=h @user.last_login_at.to_formatted_s(:long) %></div>
 </div>
 
 <br />

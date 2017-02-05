@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170203225943) do
+ActiveRecord::Schema.define(version: 20170205135318) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title",                  limit: 255
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170203225943) do
     t.string   "where",                  limit: 255
     t.string   "post_map_ref",           limit: 255
     t.text     "public_description",     limit: 65535
-    t.integer  "organiser",              limit: 4
+    t.integer  "organiser_id",           limit: 4
     t.string   "fee",                    limit: 255
     t.datetime "book_by_date"
     t.integer  "user_id",                limit: 4
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20170203225943) do
     t.datetime "updated_at",                                           null: false
     t.string   "organiser_email",        limit: 255
     t.string   "organiser_phone",        limit: 255
-    t.integer  "second_organiser",       limit: 4
+    t.integer  "second_organiser_id",    limit: 4
     t.string   "second_organiser_email", limit: 255
     t.string   "second_organiser_phone", limit: 255
   end
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170203225943) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin",                           default: false
+    t.string   "phone",               limit: 255
   end
 
 end

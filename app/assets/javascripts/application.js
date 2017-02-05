@@ -42,20 +42,22 @@ $(document).ready(function() {
   $('.datetimepicker').datetimepicker({format: "YYYY-MM-DD HH:mm"} );
   $('.datepicker').datetimepicker({format: "YYYY-MM-DD"});
 
-  $('#event_organiser').select2({theme: 'bootstrap'});
-  $('#event_second_organiser').select2({theme: 'bootstrap'});
+  $('#event_organiser_id').select2({theme: 'bootstrap'});
+  $('#event_second_organiser_id').select2({theme: 'bootstrap'});
 
-  $('#event_organiser').on("select2:select", function (e) {
-     user_id = $('#event_organiser').val();
+  $('#event_organiser_id').on("select2:select", function (e) {
+     user_id = $('#event_organiser_id').val();
      $.getJSON('/users/' + user_id + '/user_details', function(jd) {
         $('#event_organiser_email').val(jd.email);
+        $('#event_organiser_phone').val(jd.phone);
      });
   });
 
-  $('#event_second_organiser').on("select2:select", function (e) {
-     user_id = $('#event_second_organiser').val();
+  $('#event_second_organiser_id').on("select2:select", function (e) {
+     user_id = $('#event_second_organiser_id').val();
      $.getJSON('/users/' + user_id + '/user_details', function(jd) {
         $('#event_second_organiser_email').val(jd.email);
+        $('#event_second_organiser_phone').val(jd.phone);
      });
   });
 });
