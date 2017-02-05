@@ -34,6 +34,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def user_details
+    render json: User.find_by(id: params[:user_id]).to_json
+  end
+
   private
  
   def user_params

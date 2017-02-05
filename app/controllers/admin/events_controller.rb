@@ -2,7 +2,10 @@ class Admin::EventsController < AdminController
   load_and_authorize_resource :event
 
   def new
+    @organisers = User.all.map { |u| [u.full_name, u.id] }
     @event = Event.new
+    @event.organiser = current_user.id
+    @event.organiser_email = current_user.email
   end
 
   def show
@@ -14,6 +17,7 @@ class Admin::EventsController < AdminController
   end
 
   def edit
+    @organisers = User.all.map { |u| [u.full_name, u.id] }
     @event = Event.find_by(id: params[:id])
   end
 

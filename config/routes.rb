@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :user_sessions
-  resources :users
+  resources :users do
+    get :user_details
+  end
   resources :events do
     get :signup
     get :leave
@@ -24,7 +26,9 @@ Rails.application.routes.draw do
   namespace :my_account do
     match '/' => 'dashboard#index', as: 'dashboard', via: %i{get put post patch delete}
     resources :users
-    resources :events
+    resources :events do
+      get :leave
+    end
     root "dashboard#index"
   end
   # The priority is based upon order of creation: first created -> highest priority.

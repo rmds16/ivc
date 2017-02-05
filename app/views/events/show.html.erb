@@ -32,7 +32,7 @@
 </div>
 <div class="row">
  <div class="col-xs-2">Book by date: </div>
- <div class="col-xs-10"> <%= @event.book_by_date %></div>
+ <div class="col-xs-10"> <%= @event.book_by_date.to_formatted_s(:long) %></div>
 </div>
 
 <div class="col-xs-12">

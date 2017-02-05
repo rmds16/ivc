@@ -44,6 +44,10 @@ gem 'bootstrap-sass-extras'
 gem 'autoprefixer-rails'
 gem 'bootstrap_form'
 
+gem 'jquery-ui-rails'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
+gem 'select2-rails', '4.0.3'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

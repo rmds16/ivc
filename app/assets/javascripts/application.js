@@ -13,9 +13,12 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui
 //= require bootstrap
 //= require moment
+//= require bootstrap-datetimepicker
 //= require fullcalendar
+//= require select2
 
 $(document).ready(function() {
 
@@ -36,6 +39,25 @@ $(document).ready(function() {
     }
   });
 
+  $('.datetimepicker').datetimepicker({format: "YYYY-MM-DD HH:mm"} );
+  $('.datepicker').datetimepicker({format: "YYYY-MM-DD"});
+
+  $('#event_organiser').select2({theme: 'bootstrap'});
+  $('#event_second_organiser').select2({theme: 'bootstrap'});
+
+  $('#event_organiser').on("select2:select", function (e) {
+     user_id = $('#event_organiser').val();
+     $.getJSON('/users/' + user_id + '/user_details', function(jd) {
+        $('#event_organiser_email').val(jd.email);
+     });
+  });
+
+  $('#event_second_organiser').on("select2:select", function (e) {
+     user_id = $('#event_second_organiser').val();
+     $.getJSON('/users/' + user_id + '/user_details', function(jd) {
+        $('#event_second_organiser_email').val(jd.email);
+     });
+  });
 });
 
 //= require turbolinks
