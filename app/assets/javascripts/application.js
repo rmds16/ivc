@@ -35,6 +35,10 @@ $(document).ready(function() {
       }
     ],
 
+    eventRender: function(event, element) {
+      $(element).tooltip({title: event.title, container: 'body'});             
+    },
+
     dayClick: function(date, jsEvent, view) {
       window.location.href = "events/new?date=" + date.format();
     }
