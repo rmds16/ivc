@@ -1,0 +1,75 @@
+<div class="row">
+ <div class="col-xs-2">Title:</div>
+ <div class="col-xs-10"><%= @event.title %></div>
+</div>
+<div class="row">
+ <div class="col-xs-2">Start: </div>
+ <div class="col-xs-10"> <%= @event.start_date.to_formatted_s(:long) %></div>
+</div>
+<br/>
+<div class="row">
+ <div class="col-xs-2">Location:</div>
+ <div class="col-xs-10"><%= simple_format(@event.where) %></div>
+</div>
+<br/>
+<div class="row">
+ <div class="col-xs-2">Post code: </div>
+ <div class="col-xs-10"> <%= @event.post_map_ref %></div>
+</div>
+<br />
+<div class="row">
+ <div class="col-xs-2">Book by date: </div>
+ <div class="col-xs-10"> <%= @event.book_by_date.to_formatted_s(:long) %></div>
+</div>
+<br/>
+<div class="row">
+ <div class="col-xs-2">Description:</div>
+ <div class="col-xs-10"><%= simple_format(@event.public_description) %></div>
+</div>
+<br/>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="col-sm-6 organiser-details">
+      <div class="row">
+        <div class="col-sm-12">Organiser:</div>
+	  </div>
+	  <div class="row">
+        <div class="col-sm-12"><br /></div>
+	  </div>
+      <div class="row">
+        <div class="col-xs-2">Name:</div>
+        <div class="col-sm-10"><%= @event.organiser.full_name if @event.organiser %></div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-2">Email:</div>
+	    <div class="col-sm-10"><%= @event.organiser_email %></div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-2">Phone:</div>
+		<div class="col-sm-10"><%= @event.organiser_phone %></div>
+	  </div>
+	</div>
+	<% if @event.second_organiser %>
+	<div class="col-sm-6 organiser-details">
+	  <div class="row">
+        <div class="col-sm-12">Second Organiser:</div>
+	  </div>
+      <div class="row">
+        <div class="col-sm-12"><br /></div>
+	  </div>
+	  <div class="row">
+        <div class="col-xs-2">Name:</div>
+        <div class="col-sm-10"><%= @event.second_organiser.full_name %></div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-2">Email:</div>
+	    <div class="col-sm-10"><%= @event.second_organiser_email %></div>
+	  </div>
+	  <div class="row">
+	    <div class="col-xs-2">Phone:</div>
+		<div class="col-sm-10"><%= @event.second_organiser_phone %></div>
+	  </div>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -27,7 +27,7 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <div class="col-sm-6">
+    <div class="col-sm-6 organiser-details">
       <div class="row">
         <div class="col-sm-12"><%= f.select :organiser_id, @organisers, { include_blank: true }, { class: 'select2' } %></div>
 	  </div>
@@ -38,7 +38,7 @@
 		<div class="col-sm-12"><%= f.text_field :organiser_phone %></div>
 	  </div>
 	</div>
-	<div class="col-sm-6">
+	<div class="col-sm-6 organiser-details">
 	  <div class="row">
 		<div class="col-sm-12"><%= f.select :second_organiser_id, @organisers, { include_blank: true }, { class: 'select2', default: nil } %></div>
 	  </div>
