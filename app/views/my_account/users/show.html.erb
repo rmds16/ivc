@@ -4,26 +4,35 @@
 %>
 
 <div class="row">
-  <div class="col-sm-2">Name:</div>
-  <div class="col-sm-10"><%=h @user.full_name %></div>
-</div>
+  <div class="col-sm-2">
+    <%= avatar(@user) %>
+  </div>
+  <div class="col-sm-10">
+    <div class="row">
+      <div class="col-sm-2">Name:</div>
+      <div class="col-sm-10"><%=h @user.full_name %></div>
+    </div>
 
-<div class="row">
-  <div class="col-sm-2">Login:</div>
-  <div class="col-sm-10"><%=h @user.email %></div>
-</div>
+    <div class="row">
+      <div class="col-sm-2">Login:</div>
+      <div class="col-sm-10"><%=h @user.email %></div>
+    </div>
 
-<div class="row">
-  <div class="col-sm-2">Phone:</div>
-  <div class="col-sm-10"><%=h @user.phone %></div>
-</div>
+    <div class="row">
+      <div class="col-sm-2">Phone:</div>
+      <div class="col-sm-10"><%=h @user.phone %></div>
+    </div>
 
-<div class="row">
-  <div class="col-sm-2">Last login at:</div>
-  <div class="col-sm-10"><%=h @user.last_login_at.to_formatted_s(:long) %></div>
+    <div class="row">
+      <div class="col-sm-2">Last login at:</div>
+      <div class="col-sm-10"><%=h @user.last_login_at.to_formatted_s(:long) if @user.last_login_at %></div>
+    </div>
+  </div>
 </div>
 
 <br />
+
+<hr />
 
 <div class="row">
   <div class="col-sm-12"><%= link_to "Edit", edit_my_account_user_path %>
