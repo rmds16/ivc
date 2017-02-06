@@ -12,4 +12,16 @@ class UserMailerPreview < ActionMailer::Preview
     event = Event.last
     UserMailer.organiser_event_signup(user, user, event)
   end
+
+  def event_leave
+  	user = User.last
+    event = Event.last
+    UserMailer.event_leave(user, event)
+  end
+
+  def organiser_event_leave
+  	user = User.last
+    event = Event.last
+    UserMailer.organiser_event_leave(user, user, event)
+  end
 end

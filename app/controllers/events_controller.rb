@@ -89,7 +89,11 @@ class EventsController < ApplicationController
     end
 
     flash[:danger] = "An error has occurred, unable to unsubscribe from event" unless @event.attendees.delete(current_user)
-    
+
+    UserMailer.event_leave(current_user, @event).deliver_now
+    UserMailer.organiser_event_leave(@event.organiser, current_user, @event).deliver_now if @event.organiser
+    UserMailer.organiser_event_leave(@event.second_organiser, current_user, @event).deliver_now @event.second_organiser
+
     redirect_to event_path(@event)
   end
 
