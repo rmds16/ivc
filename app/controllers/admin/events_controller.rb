@@ -53,7 +53,7 @@ class Admin::EventsController < AdminController
     user = User.find_by(id: params[:user_id])
 
     unless @event.attendees.include?(user)
-      flash[:success] = "#{user.fullname} has already unsubscribed from this event"
+      flash[:success] = "#{user.full_name} has already unsubscribed from this event"
       redirect_to event_path(@event)
       return
     end
