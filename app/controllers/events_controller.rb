@@ -90,6 +90,21 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  def remove_attendee
+    @event = Event.find_by(id: params[:event_id])
+    user = User.find_by(id: params[:user_id])
+
+    unless @event.attendees.include?(user)
+      flash[:success] = "#{user.full_name} has already unsubscribed from this event"
+      redirect_to event_path(@event)
+      return
+    end
+
+    flash[:danger] = "An error has occurred, unable to unsubscribe from event" unless @event.attendees.delete(user)
+    
+    redirect_to event_path(@event)
+  end
+
   private
 
   def event_params

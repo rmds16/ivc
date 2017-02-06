@@ -19,13 +19,15 @@
 <p>Count: <%= @event.attendees.count %></p>
 <br/>
 <% @event.attendees.each do |user| %>
-<div class="row">
-  <div class="col-sm-12"><%= user.full_name %></div>
+<div class="row attendee">
+  <div class="col-sm-12"><%= avatar_icon(user) %> <%= user.full_name %> <%= link_to "Remove", event_remove_attendee_path(@event, user_id: user.id), data: { confirm: "Remove #{user.full_name}?" } if can? :edit, @event %></div>
 </div>
 <% end %>
 
 <hr />
 
+<% else %>
+<br />
 <% end %>
 
 <div class="row col-sm-12" style="padding-left: 0px;">
