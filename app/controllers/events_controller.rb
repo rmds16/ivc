@@ -63,9 +63,12 @@ class EventsController < ApplicationController
       return
     end
 
-    flash[:danger] =attendees "An error has occurred, unable to subscribe to event" unless @event.attendees << current_user
+    flash[:danger] = attendees "An error has occurred, unable to subscribe to event" unless @event.attendees << current_user
     
-    UserMailer.welcome_email(current_user, @event).deliver_now
+    UserMailer.event_signup(current_user, @event).deliver_now
+    UserMailer.organiser_event_signup(@event.organiser, current_user, @event).deliver_now if @event.organiser
+    UserMailer.organiser_event_signup(@event.second_organiser, current_user, @event).deliver_now @event.second_organiser
+
 
     redirect_to event_path(@event)
   end
