@@ -1,0 +1,64 @@
+<h3><%= @event.title %></h3>
+<table width="100%">
+<tr>
+ <td width="150">Start: </td>
+ <td> <%= @event.start_date.to_formatted_s(:long) %></td>
+</td>
+</tr>
+<tr>
+ <td>Location:</td>
+ <td><%= simple_format(@event.where) %></td>
+</tr>
+<tr>
+ <td>Post code: </td>
+ <td><%= @event.post_map_ref %></td>
+</td>
+<tr>
+ <td>Book by date: </td>
+ <td> <%= @event.book_by_date.to_date.to_formatted_s(:long) if @event.book_by_date %></td>
+</tr>
+<tr>
+ <td valign="top">Description:</td>
+ <td><%= simple_format(@event.public_description) %></td>
+</tr>
+<tr>
+  <td valign="top">Organiser:</td>
+  <td>
+   <table>
+	<tr>
+	 <td>Name:</td>
+	 <td><%= @event.organiser.full_name if @event.organiser %></td>
+	</td>
+	<tr>
+	 <td>Email:</td>
+	 <td><%= @event.organiser_email %></td>
+	</td>
+	<tr>
+	 <td>Phone:</td>
+	 <td><%= @event.organiser_phone %></td>
+	</tr>
+   </table>
+  </td>
+</tr>   	
+<% if @event.second_organiser %>
+<tr>
+  <td valign="top">Second Organiser:</td>
+  <td>
+   <table>
+	<tr>
+	 <td>Name:</td>
+	 <td><%= @event.second_organiser.full_name if @event.second_organiser %></td>
+	</td>
+	<tr>
+	 <td>Email:</td>
+	 <td><%= @event.second_organiser_email %></td>
+	</td>
+	<tr>
+	 <td>Phone:</td>
+	 <td><%= @event.second_organiser_phone %></td>
+	</tr>
+   </table>
+  </td>
+</tr>   	
+<% end %>
+</table>

@@ -1,0 +1,8 @@
+<h3>IVC Events: <%= @start_date.to_date.to_formatted_s(:long) %> to <%= @end_date.to_date.to_formatted_s(:long) %></h3>
+
+<% @events.each do |event| %>
+  <% @event = event %>
+  <%= render partial: 'helpers/event_details' if @event.present? %>
+  <br />
+  <br />
+<% end %>

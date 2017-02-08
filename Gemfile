@@ -48,6 +48,9 @@ gem 'jquery-ui-rails'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'select2-rails', '4.0.3'
 
+gem 'wicked_pdf', '1.1.0'
+gem 'wkhtmltopdf-binary', '0.12.3.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     get :signup
     get :leave
     get :remove_attendee
+    collection do
+      get :search_event
+      post :search_event
+    end
   end
 
   root "main#calendar"

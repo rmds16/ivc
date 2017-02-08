@@ -112,6 +112,28 @@ class EventsController < ApplicationController
     redirect_to event_path(@event)
   end
 
+  def search_event
+    @start_date = params[:start_date] ? DateTime.parse(params[:start_date]) : DateTime.now
+    @end_date = params[:end_date] ? DateTime.parse(params[:end_date]) : DateTime.now + 7.days
+
+    @start_date = @start_date.beginning_of_day
+    @end_date = @end_date.end_of_day
+
+    if @start_date > @end_date
+      flash[:danger] = "Please enter a valid date range"
+      render action: :search_event
+    end
+
+    @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "ivc_events"
+      end
+    end
+  end
+
   private
 
   def event_params

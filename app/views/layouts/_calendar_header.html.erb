@@ -20,6 +20,7 @@
            <li><%= link_to "Create Event", new_event_path %></li>
            <li><%= link_to "My Profile", my_account_user_path(current_user) %></li>
            <li><%= link_to "My Events", my_account_events_path %></li>
+           <li><%= link_to "Event Search", search_event_events_path %></li>
            <li><%= link_to "Admin", admin_root_path if current_user.admin? %></li>
            <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
           </ul>
