@@ -25,4 +25,9 @@ class UserMailer < ApplicationMailer
     @event = event
     mail(to: organiser.email, subject: "IVC Events: #{user.full_name} has now left the event #{event.title}")
   end
+
+  def password_reset_instructions(user)
+  	@user = user
+  	mail(to: user.email, subject: "Password Reset Instructions")
+  end
 end

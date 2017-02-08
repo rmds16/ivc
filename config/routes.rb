@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   match 'signin' => "user_sessions#new", as: :signin, via: %i{get put post patch delete}
   match 'signout' => "user_sessions#destroy", as: :signout, via: %i{get put post patch delete}
 
+  get 'password_reset' => 'password_reset#new'
+  post 'password_reset' => 'password_reset#create'
+  get 'password_reset/:id/' => 'password_reset#edit', as: :password_reset_edit
+  post 'password_reset/:id/' => 'password_reset#update', as: :password_reset_update
+
   namespace :admin do
     resources :users
     resources :events do

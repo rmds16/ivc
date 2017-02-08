@@ -1,0 +1,13 @@
+<%
+   @title = "Reset Password"
+   @title_link = password_reset_path
+%>
+
+<p>Please enter your email address below and then press "Reset Password".</p>
+
+<br />
+
+<%= bootstrap_form_tag url: password_reset_path do |f| %>
+  <%= f.text_field :email %>
+  <%= f.submit "Reset Password" %>
+<% end %>

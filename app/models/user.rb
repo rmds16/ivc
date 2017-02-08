@@ -21,4 +21,9 @@ class User < ActiveRecord::Base
   def future_events
     attended_events.where("start_date > ?", Time.now ).order(:start_date)
   end
+
+  def deliver_password_reset_instructions!
+    reset_perishable_token!
+    UserMailer.password_reset_instructions(self).deliver_now
+  end
 end

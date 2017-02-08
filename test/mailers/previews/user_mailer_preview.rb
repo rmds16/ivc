@@ -24,4 +24,9 @@ class UserMailerPreview < ActionMailer::Preview
     event = Event.last
     UserMailer.organiser_event_leave(user, user, event)
   end
+
+  def password_reset_instructions
+  	user = User.last
+    UserMailer.password_reset_instructions(user)
+  end
 end

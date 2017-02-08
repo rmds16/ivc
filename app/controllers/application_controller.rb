@@ -19,6 +19,15 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.record
   end
 
+  def require_no_user
+    if current_user
+      store_location
+      flash[:danger] = "You must be logged out to access this page"
+      redirect_to calendar_path
+      return false
+    end
+  end
+
   def store_location
     session[:return_to] = request.original_url
   end

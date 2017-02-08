@@ -1,0 +1,14 @@
+<%
+   @title = "Update Password"
+   @title_link = '#'
+%>
+
+<p>Please enter your new password below:</p>
+
+<br />
+
+<%= bootstrap_form_tag url: password_reset_update_path do |f| %>
+  <%= f.password_field :password %>
+  <%= f.password_field :password_confirmation %>
+  <%= f.submit "Update Password" %>
+<% end %>
