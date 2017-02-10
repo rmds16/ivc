@@ -67,8 +67,8 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-12"><%= f.form_group :featured_event, label: { text: "Featured event" } do %>
-  <%= f.radio_button :featured_event, true, label: "True", inline: true %>
-  <%= f.radio_button :featured_event, false, label: "False", inline: true %>
- <% end %></div>
+  <div class="col-sm-12"><%= f.label :featured_event, 'Featured event', class: 'checkbox inline' %>
+   <%= f.radio_button :featured_event, true, label: "True", inline: true %>
+   <%= f.radio_button :featured_event, false, label: "False", inline: true %>
+  </div>
  </div>
