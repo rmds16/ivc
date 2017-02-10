@@ -113,6 +113,7 @@
             <% flash.each do |key, value| %>
             <div class="alert alert-<%= key %>"><%= value %></div>
             <% end %>
+            <%= yield :form_errors %>
             <%= yield %>
           </div>
     </div>

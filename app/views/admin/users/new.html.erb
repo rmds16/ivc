@@ -1,8 +1,11 @@
-<div class="page-header">
-  <h3>Register</h3>
-</div>
+<% @admin_title = "Register" %>
 
 <%= bootstrap_form_for @user, url: admin_users_path do |f| %>
+  <%= form_errors_for @user %>
   <%= render 'helpers/user_fields', form: f %>
+  <%= f.form_group :admin, label: { text: "Admin" } do %>
+  <%= f.radio_button :admin, true, label: "True", inline: true %>
+  <%= f.radio_button :admin, false, label: "False", inline: true %>
+  <% end %>
   <%= f.submit "Register" %>
 <% end %>

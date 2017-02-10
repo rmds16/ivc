@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_filter :signed_in_user, except: :index
 
   def new
-    @organisers = User.all.map { |u| [u.full_name, u.id] }
+    @organisers = User.organisers
     @event = Event.new
     @event.organiser_id = current_user.id
     @event.organiser_email = current_user.email
@@ -25,12 +25,13 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.start_date = DateTime.parse(event_params[:start_date])
-    @event.end_date = @event.start_date + 1.hour
-    if @event.save!
+    @event.start_date = DateTime.parse(event_params[:start_date]) if params[:start_date]
+    @event.end_date = @event.start_date + 1.hour if @event.start_date
+    if @event.save
       flash[:success] = "Event created!"
       redirect_back_or_default calendar_path
     else
+      @organisers = User.organisers
       render action: :new
     end
   end
@@ -40,7 +41,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @organisers = User.all.map { |u| [u.full_name, u.id] }
+    @organisers = User.organisers
     @event = Event.find_by(id: params[:id])
   end
   
@@ -50,6 +51,7 @@ class EventsController < ApplicationController
       flash[:success] = "Event updated!"
       redirect_to calendar_path
     else
+      @organisers = User.organisers
       render action: :edit
     end
   end

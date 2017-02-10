@@ -7,11 +7,18 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
   end
 
+  validates :first_name, presence: true
+  validates :surname, presence: true
+
   def as_json(options = {})
     {
 	  email: email,
 	  phone: phone
     }
+  end
+
+  def self.organisers
+    User.all.map { |u| [u.full_name, u.id] }
   end
 
   def full_name

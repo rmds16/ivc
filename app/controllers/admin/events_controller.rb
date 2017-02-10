@@ -2,7 +2,7 @@ class Admin::EventsController < AdminController
   load_and_authorize_resource :event
 
   def new
-    @organisers = User.all.map { |u| [u.full_name, u.id] }
+    @organisers = User.organisers
     @event = Event.new
     @event.organiser_id = current_user.id
     @event.organiser_email = current_user.email
@@ -18,7 +18,7 @@ class Admin::EventsController < AdminController
   end
 
   def edit
-    @organisers = User.all.map { |u| [u.full_name, u.id] }
+    @organisers = User.organisers
     @event = Event.find_by(id: params[:id])
   end
 
@@ -28,6 +28,7 @@ class Admin::EventsController < AdminController
       flash[:success] = "Event updated!"
       redirect_to admin_events_path
     else
+      @organisers = User.organisers
       render action: :edit
     end
   end
@@ -40,10 +41,11 @@ class Admin::EventsController < AdminController
 
   def create
     @event = Event.new(event_params)
-    if @event.save!
+    if @event.save
       flash[:success] = "Event created!"
       redirect_back_or_default admin_event_path
     else
+      @organisers = User.organisers
       render action: :new
     end
   end

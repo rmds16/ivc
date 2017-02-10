@@ -4,6 +4,7 @@
 %>
 
 <%= bootstrap_form_for @event do |f| %>
+  <%= form_errors_for @event %>
   <%= render partial: 'helpers/event_fields', locals: { f: f } %>
   <br />
   <%= f.submit "Update" %>

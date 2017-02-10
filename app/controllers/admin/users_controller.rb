@@ -25,7 +25,7 @@ class Admin::UsersController < AdminController
 
   def create
     @user = User.new(user_params)
-    if @user.save!
+    if @user.save
       flash[:success] = "Account registered!"
       redirect_back_or_default admin_users_path
     else

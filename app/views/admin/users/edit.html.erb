@@ -1,8 +1,7 @@
-<div class="page-header">
- <h3>Edit Account</h3>
-</div>
+<% @admin_title = "Edit Account" %>
 
 <%= bootstrap_form_for @user, url: admin_user_path do |f| %>
+  <%= form_errors_for @user %>
   <%= render partial: "helpers/user_fields", locals: { form: f } %>
   <%= f.form_group :admin, label: { text: "Admin" } do %>
   <%= f.radio_button :admin, true, label: "True", inline: true %>

@@ -33,9 +33,13 @@
 
 <div class="container">
   <div class="col-md-12">
+    <div class="page-header">
+      <h3><%= @admin_title %></h3>
+    </div>
     <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
+    <%= yield :form_errors %>
     <%= yield %>
   </div>
  </div>
