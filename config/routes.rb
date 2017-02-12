@@ -15,8 +15,29 @@ Rails.application.routes.draw do
 
   root "main#calendar"
 
-  match 'calendar' => 'main#calendar', via: %i{get put post patch delete}
+  match 'calendar' => 'main#calendar', via: %i{get}
+  match 'introduction' => 'main#introduction', via: %i{get}
+  match 'events_and_activities' => 'main#events_and_activities', via: %i{get}
+  match 'membership' => 'main#membership', via: %i{get}
+  match 'contacts' => 'main#contacts', via: %i{get}
+  match 'bedford' => 'main#bedford', via: %i{get}
+  match 'south_bedfordshire' => 'main#south_bedfordshire', via: %i{get}
+  match 'st_albans' => 'main#st_albans', via: %i{get}
+  match 'contacts' => 'main#contacts', via: %i{get}
+  match 'mid_hertfordshire' => 'main#mid_hertfordshire', via: %i{get}
+  match 'west_hertfordshire' => 'main#west_hertfordshire', via: %i{get}
+  match 'north_hertfordshire' => 'main#north_hertfordshire', via: %i{get}
+  match 'other_areas' => 'main#other_areas', via: %i{get}
 
+  match 'evening_events' => 'main#evening_events', via: %i{get}
+  match 'days_out' => 'main#days_out', via: %i{get}
+  match 'walks' => 'main#walks', via: %i{get}
+  match 'city_breaks' => 'main#city_breaks', via: %i{get}
+  match 'activity_weekends' => 'main#activity_weekends', via: %i{get}
+  match 'trips_abroad' => 'main#trips_abroad', via: %i{get}
+  match 'weekends_away' => 'main#weekends_away', via: %i{get}
+  match 'activities' => 'main#activities', via: %i{get}
+  
   match 'signin' => "user_sessions#new", as: :signin, via: %i{get put post patch delete}
   match 'signout' => "user_sessions#destroy", as: :signout, via: %i{get put post patch delete}
 
