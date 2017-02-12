@@ -69,7 +69,7 @@ class EventsController < ApplicationController
     
     UserMailer.event_signup(current_user, @event).deliver_now
     UserMailer.organiser_event_signup(@event.organiser, current_user, @event).deliver_now if @event.organiser
-    UserMailer.organiser_event_signup(@event.second_organiser, current_user, @event).deliver_now @event.second_organiser
+    UserMailer.organiser_event_signup(@event.second_organiser, current_user, @event).deliver_now if @event.second_organiser
 
 
     redirect_to event_path(@event)
