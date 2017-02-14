@@ -6,7 +6,7 @@ body {
         margin-bottom:   0px;
         margin-right:   0px;
 /*		background-color:#BF262D; */
-		background-image:   url('background_1.png'); 
+		background-image:   url(asset_path('background_1.png')); 
 }
 
 div.wrapper {
@@ -22,42 +22,13 @@ div.wrapper-foot {
           width: 1000px;
 }
 
-/* Header background */
-div.header-middle {
-        align: middle;
-        margin-top:   0px;
-        margin-left:   0px;
-        margin-bottom:   0px;
-        margin-right:   0px;
-        padding-left:   0px;
-        padding-right:   0px;
-        padding-top:   0px;
-        padding-bottom:   0px;
-        background-image:   url('ivc_header_ellipse.png');
-        height: 105px;
-}
-
-div.header_picture
-   {
-        height: 105px;
-   		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/ivc_header_ellipse.png');
-        background: none;
-   }
- 
-div.header_hb_logo
-   {
-        height: 105px;
-   		filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/tria_logo1.png');
-        background: none;
-   }
-
 /* Menu boxes */
 div.mbox {
         margin-left:    4px;
         margin-right:   4px;
         margin-top:   4px;
         margin-bottom:   10px;
- /*       background-image:   url('lilac_rect.png'); */
+ /*       background-image:   url(asset_path('lilac_rect.png')); */
 		background-color: #FBFCE6;
         border:   0px solid black;
         padding-bottom:   0px;
@@ -66,7 +37,7 @@ div.mbox {
 }
 /* Menu boxes are divided in title and data, this is the title */
 div.mbox-title {
-        background-image:    url('vermillion_alt_title_30px.png');
+        background-image:    url(asset_path('vermillion_alt_title_30px.png'));
         border-bottom:   1px solid black;
         color:   white;
         font-family:   Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -83,7 +54,7 @@ div.mbox-title table {
     width: 100%;
 }
 div.mbox-trailer {
-	background-image: url('red_box_title_30px_bevel_cntr_btm.png');
+	background-image: url(asset_path('red_box_title_30px_bevel_cntr_btm.png'));
 	height: 20px;
 }
 /* And this is the menu data */
@@ -96,7 +67,7 @@ div.mbox-data {
 		vertical-align: middle;
         font-family:   Verdana, Geneva, Arial, Helvetica, sans-serif;
         font-size:   12px;
-        background-image: url('lilac_menu_bar.png');
+        background-image: url(asset_path('lilac_menu_bar.png'));
         border-bottom:   1px solid #53158D;
 		width:   200px;
 		height:  20px;
@@ -109,7 +80,7 @@ div.mbox-hover {
         margin-top:   0px;
         font-family:   Verdana, Geneva, Arial, Helvetica, sans-serif;
         font-size:   20px;
-        background-image: url('lilac_bar.png');
+        background-image: url(asset_path('lilac_bar.png'));
 		width:   200px;
 		height:  20px;
 }
@@ -120,9 +91,9 @@ div.cbox {
         margin-right:   4px;
         margin-top:   4px;
         margin-bottom:   0px;
-/*        background-image:   url('menugrad.png'); */
+/*        background-image:   url(asset_path('menugrad.png')); */
 /*        background:    #f7f7f7; */
-		background-image:   url('lilac_cbox_rect_2.jpg'); 
+		background-image:   url(asset_path('lilac_cbox_rect_2.jpg')); 
         border:   0px solid black;
         padding-bottom:   30px;
         overflow:   hidden;
@@ -130,7 +101,7 @@ div.cbox {
 }
 /* Content boxes are divided in title and data, this is the title */
 div.cbox-title {
-        background-image:    url('cbox_title_vermillion_780.png');
+        background-image:    url(asset_path('cbox_title_vermillion_780.png'));
         border-bottom:   1px solid black;
         color:   white;
         font-family:   Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
@@ -161,7 +132,7 @@ div.cbox-data {
         padding-left:   0px;
         padding-right:   0px;
       /*  background: none; */
-     	background-image:   url('lilac_cbox_rect_2.jpg'); 
+     	background-image:   url(asset_path('lilac_cbox_rect_2.jpg')); 
 /*      width:   100%;          */
 }
 div.cbox-photo {
@@ -176,11 +147,11 @@ div.cbox-photo {
         padding-left:   0px;
         padding-right:  0px;
       /*  background: none; */
-     	background-image:   url('lilac_cbox_rect_2.jpg'); 
+     	background-image:   url(asset_path('lilac_cbox_rect_2.jpg')); 
 /*      width:   100%;          */
 }
 div.cbox-trailer {
-        background-image: url('cbox_trailer_780.png');
+        background-image: url(asset_path('cbox_trailer_780.png'));
 	    margin-left:    4px;
         margin-right:   4px;
 		height:        20px;
@@ -199,7 +170,7 @@ div.cbox-trailer {
         font-family:   Tahoma,Verdana, Geneva, Arial, Helvetica, sans-serif;
         font-size:   12px;
         text-align:   center;
-        background-image: url('lilac_menu_bar.png');
+        background-image: url(asset_path('lilac_menu_bar.png'));
         border-bottom:   1px solid black;
 		width:   200px;
 		height:  20px;
@@ -209,7 +180,7 @@ div.cbox-trailer {
         font-family:    Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
         font-size:   15px;
 		display:     block;
-        background-image: url('dark_lilac_menu_bar.png');
+        background-image: url(asset_path('dark_lilac_menu_bar.png'));
 		height:  20px;
         color:   #53158D;
         text-decoration:   none;
