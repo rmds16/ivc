@@ -7,7 +7,7 @@
 
 <div class="col-xs-12">
 <%= button_to "Attend Event", event_signup_path(@event), method: :get, class: 'pull-right' unless @event.attendees.include?(current_user) %>
-<%= button_to "Leave Event", event_leave_path(@event), method: :get, class: 'pull-right' if @event.attendees.include?(current_user) %>
+<%= button_to "Book Out", event_leave_path(@event), method: :get, class: 'pull-right' if @event.attendees.include?(current_user) %>
 </div>
 
 <hr />
