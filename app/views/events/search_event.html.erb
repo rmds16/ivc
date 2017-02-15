@@ -6,26 +6,14 @@
 <%= bootstrap_form_tag url: search_event_events_path do |f| %>
   <div class="row">
    <div class="col-xs-1">Start: </div>
-   <div class="col-xs-4">
-     <div class="form-group">
-      <div class='input-group date datepicker pull-left'>
-        <%= f.date_field(:start_date, default: DateTime.now, hide_label: true ) %>
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-      </div>
-    </div>
+   <div class="col-xs-8">
+    <%= f.date_select(:start_date, default: @start_date, hide_label: true, order: [:day, :month, :year] ) %>
    </div>
+  </div>
+  <div class="row">
    <div class="col-xs-1">End: </div>
-   <div class="col-xs-4">
-   	<div class="form-group">
-      <div class='input-group date datepicker'>
-        <%= f.date_field(:end_date, default: DateTime.now, hide_label: true ) %>
-        <span class="input-group-addon">
-          <span class="glyphicon glyphicon-calendar"></span>
-        </span>
-      </div>
-    </div>
+   <div class="col-xs-5">
+    <%= f.date_select(:end_date, default: @end_date, hide_label: true, order: [:day, :month, :year] ) %>
    </div>
    <div class="cos-xs-2"><%= f.submit "Search" %></div>
   </div>

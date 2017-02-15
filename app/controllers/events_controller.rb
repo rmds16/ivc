@@ -115,14 +115,32 @@ class EventsController < ApplicationController
   end
 
   def search_event
-    @start_date = params[:start_date].present? ? DateTime.parse(params[:start_date]) : DateTime.now
-    @end_date = params[:end_date].present? ? DateTime.parse(params[:end_date]) : DateTime.now + 7.days
+    @start_date = DateTime.now
+    @end_date = DateTime.now + 7.days
+
+    if params['start_date(3i)'].present? && params['end_date(3i)'].present?
+      begin
+        @start_date = Date.civil(params['start_date(1i)'].to_i, params['start_date(2i)'].to_i, params['start_date(3i)'].to_i)
+        @end_date = Date.civil(params['end_date(1i)'].to_i, params['end_date(2i)'].to_i, params['end_date(3i)'].to_i)
+      rescue => e
+        flash[:danger] = "Please enter a valid date range"
+        @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date)
+        respond_to do |format|
+          format.html
+          format.pdf do
+            redirect_to search_event_events_path
+          end
+        end
+        return
+      end
+    end
 
     @start_date = @start_date.beginning_of_day
     @end_date = @end_date.end_of_day
 
     if @start_date.to_date > @end_date.to_date
       flash[:danger] = "Please enter a valid date range"
+      @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date)
       respond_to do |format|
         format.html
         format.pdf do
