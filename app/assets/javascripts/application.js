@@ -44,9 +44,6 @@ $(document).ready(function() {
     }
   });
 
-  $('.datetimepicker').datetimepicker({format: "YYYY-MM-DD HH:mm"} );
-  $('.datepicker').datetimepicker({format: "YYYY-MM-DD"});
-
   $('#event_organiser_id').select2({theme: 'bootstrap'});
   $('#event_second_organiser_id').select2({theme: 'bootstrap'});
 
