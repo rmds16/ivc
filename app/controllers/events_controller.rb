@@ -27,6 +27,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.start_date = DateTime.parse(event_params[:start_date]) if params[:start_date]
     @event.end_date = @event.start_date + 1.hour if @event.start_date
+    @event.user = current_user
     if @event.save
       flash[:success] = "Event created!"
       redirect_back_or_default calendar_path
