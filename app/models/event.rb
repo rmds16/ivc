@@ -20,7 +20,7 @@ class Event < ActiveRecord::Base
   end
 
   def user_authorised?(user)
-    user_id == user.id || organiser_id == user.id || second_organiser_id == user.id
+    user.admin? || user_id == user.id || organiser_id == user.id || second_organiser_id == user.id
   end
 
 end

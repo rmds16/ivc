@@ -104,6 +104,10 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:event_id])
     user = User.find_by(id: params[:user_id])
 
+    unless @event.user_authorised?(current_user)
+      raise CanCan::AccessDenied.new("Not authorized!", :remove_attendee, Event)
+    end
+
     unless @event.attendees.include?(user)
       flash[:success] = "#{user.full_name} has already unsubscribed from this event"
       redirect_to event_path(@event)
