@@ -71,6 +71,15 @@ group :development, :test do
   gem 'byebug'
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'timecop'
+end
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
