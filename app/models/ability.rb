@@ -39,7 +39,7 @@ class Ability
       can [:read, :signup, :leave, :repeat_once, :repeat_weekly], Event
       can [:create, :user_details], User
       can [:read, :edit, :update], User, id: user.id
-      can [:destroy, :edit, :update], Event do |event|
+      can [:destroy, :edit, :update, :remove_attendee], Event do |event|
         event.user_authorised?(user)
       end
     end
