@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     get :signup
     get :leave
     get :remove_attendee
+    post :repeat_once
+    post :repeat_weekly
     collection do
       get :search_event
       post :search_event

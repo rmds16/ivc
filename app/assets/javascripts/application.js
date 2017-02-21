@@ -62,6 +62,15 @@ $(document).ready(function() {
         $('#event_second_organiser_phone').val(jd.phone);
      });
   });
+
+  $('.repeat-toggle').on('click', function (e) {
+    $('.repeat-dropdown').toggle(800);
+    e.preventDefault();
+  });
+
+  $( function() {
+    $( "#tabs" ).tabs();
+  });
 });
 
 //= require turbolinks

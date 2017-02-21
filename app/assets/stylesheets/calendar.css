@@ -20,3 +20,15 @@
 .attendee div {
   padding-bottom: 5px;
 }
+
+/* Event */
+
+.repeat-dropdown {
+  padding-left: 0px;
+  padding-top: 20px;
+  display: none;
+}
+
+.repeat-dropdown .row { 
+  margin-top:20px;
+}

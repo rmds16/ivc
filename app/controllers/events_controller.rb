@@ -39,6 +39,8 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find_by(id: params[:id])
+    @days = []
+    Date::DAYNAMES.each_with_index { |x, i| @days << [x, i] }
   end
 
   def edit
@@ -117,6 +119,51 @@ class EventsController < ApplicationController
     flash[:danger] = "An error has occurred, unable to unsubscribe from event" unless @event.attendees.delete(user)
     
     redirect_to event_path(@event)
+  end
+
+  def repeat_once
+    begin
+      @event = Event.find_by(params[:event_id])
+      repeat_event = @event.dup
+      repeat_event.update_attributes(event_params)
+      repeat_event.update_attribute(:end_date, repeat_event.start_date + 1.hour) if repeat_event.start_date
+      days_diff = (repeat_event.start_date.to_date - @event.start_date.to_date).to_i
+      repeat_event.update_attribute(:book_by_date, @event.book_by_date + days_diff.days) if @event.book_by_date
+      redirect_to calendar_path
+    rescue
+      flash[:danger] = "An error occured, please try again"
+      render action: :show
+    end 
+  end
+
+  def repeat_weekly
+    begin
+      @event = Event.find_by(params[:event_id])
+
+      start_date = DateTime.new(params['weekly_start_date']['year'].to_i, params['weekly_start_date']['month'].to_i, params['weekly_start_date']['day'].to_i, params['weekly_start_time']['hour'].to_i, params['weekly_start_time']['minute'].to_i)
+      end_date = DateTime.new(params['weekly_end_date']['year'].to_i, params['weekly_end_date']['month'].to_i, params['weekly_end_date']['day'].to_i, params['weekly_start_time']['hour'].to_i, params['weekly_start_time']['minute'].to_i)
+
+      if(start_date > end_date) || (end_date < DateTime.now)
+        flash[:danger] = "Invalid date range"
+        render action: :show
+        return
+      end
+
+      new_date = (end_date - end_date.wday.days) + params[:day_of_week].to_i.days   
+      new_date -= 7.days if new_date > end_date
+
+      while (new_date > DateTime.now) && (new_date >= start_date)
+        new_event = @event.dup
+        days_diff = (new_date.to_date - @event.start_date.to_date).to_i
+        new_event.update_attributes(start_date: new_date, end_date: new_date + 1.hour)
+        new_event.update_attribute(:book_by_date, @event.book_by_date + days_diff.days) if @event.book_by_date
+        new_date -= 7.days
+      end
+      redirect_to calendar_path
+    rescue
+      flash[:danger] = "An error occured, please try again"
+      redirect_to calendar_path
+    end
   end
 
   def search_event
