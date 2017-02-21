@@ -8,11 +8,11 @@
 
 .featured-event div span {
   font-weight: bold;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .standard-event div span {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 /* Event attendees */

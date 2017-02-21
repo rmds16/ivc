@@ -1,6 +1,6 @@
 body {
         font-family:   Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
-        font-size:   10px;
+        font-size:   13px;
         margin-top:   0px;
         margin-left:   0px;
         margin-bottom:   0px;
@@ -99,6 +99,11 @@ div.cbox {
         overflow:   hidden;
 /*        width:   100%; */
 }
+
+div.cbox strong {
+        font-size: 18px;
+}
+
 /* Content boxes are divided in title and data, this is the title */
 div.cbox-title {
         background-image:    url(asset_path('cbox_title_vermillion_780.png'));
