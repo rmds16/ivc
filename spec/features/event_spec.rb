@@ -124,7 +124,7 @@ describe "the event options", type: :feature do
 
         it "does not allow users to be removed" do
           visit event_remove_attendee_path(test_event, {user_id: other_user.id})
-          expect(page).to have_current_path(signin_path)
+          expect(page).to have_current_path(calendar_path)
         end
       end
     end
