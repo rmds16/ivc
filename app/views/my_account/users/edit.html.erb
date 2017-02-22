@@ -3,7 +3,7 @@
    @title_link = edit_my_account_user_path
 %>
 
-<%= bootstrap_form_for @user do |f| %>
+<%= bootstrap_form_for @user, url: my_account_user_path do |f| %>
   <%= render partial: "helpers/user_fields", locals: { form: f } %>
   <%= f.submit "Update" %>
 <% end %>

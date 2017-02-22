@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(user_params)
       flash[:success] = "Account updated!"
-      redirect_to calendar_path
+      redirect_to my_account_user_path(@user)
     else
       render action: :edit
     end
