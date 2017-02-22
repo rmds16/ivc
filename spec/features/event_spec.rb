@@ -10,15 +10,17 @@ describe "create an event", type: :feature do
     end
 
     it "can create an event" do
-      visit new_event_path
-      fill_in 'Title', with: 'Test New Event'
-      fill_in 'Location', with: 'New event location'
-      fill_in 'Post Code', with: 'AB4 5LE'
-      fill_in 'Description', with: 'New event description'
-      select test_user.full_name, from: "Organiser"
-      fill_in 'Organiser phone', with: '0123456789'
-      click_button 'Create'
-      expect(page).to have_current_path(calendar_path)
+      Timecop.freeze do
+        visit new_event_path
+        fill_in 'Title', with: 'Test New Event'
+        fill_in 'Location', with: 'New event location'
+        fill_in 'Post Code', with: 'AB4 5LE'
+        fill_in 'Description', with: 'New event description'
+        select test_user.full_name, from: "Organiser"
+        fill_in 'Organiser phone', with: '0123456789'
+        click_button 'Create'
+        expect(page).to have_current_path(calendar_path(date: DateTime.now.to_date.to_s))
+      end
     end
 
     it "raises an error if the title is missing" do

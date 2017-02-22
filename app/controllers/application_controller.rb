@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper :all
-  helper_method :current_user_session, :current_user
+  helper_method :current_user_session, :current_user, :show_date_params
   # filter_parameter_logging :password, :password_confirmation
 
   private
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     return @current_user_session if defined?(@current_user_session)
     @current_user_session = UserSession.find
   end
-  
+
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.record
@@ -51,5 +51,10 @@ class ApplicationController < ActionController::Base
       store_location
       redirect_to signin_path
     end
+  end
+
+  def show_date_params(date)
+    return unless date.kind_of?(Date) || date.kind_of?(Time)
+    { date: date.to_date.to_s }
   end
 end
