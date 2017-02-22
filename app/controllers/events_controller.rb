@@ -30,7 +30,7 @@ class EventsController < ApplicationController
     @event.user = current_user
     if @event.save
       flash[:success] = "Event created!"
-      redirect_back_or_default calendar_path
+      redirect_back_or_default calendar_path(show_date_params(@event.start_date))
     else
       @organisers = User.organisers
       render action: :new
@@ -51,8 +51,9 @@ class EventsController < ApplicationController
   def update
     @event = Event.find_by(id: params[:id])
     if @event.update_attributes(event_params)
+      @event.update_attribute(:end_date, @event.start_date + 1.hour) if @event.start_date
       flash[:success] = "Event updated!"
-      redirect_to calendar_path
+      redirect_to calendar_path(show_date_params(@event.start_date.to_date))
     else
       @organisers = User.organisers
       render action: :edit
@@ -80,8 +81,9 @@ class EventsController < ApplicationController
 
   def destroy
     event = Event.find_by(id: params['id'])
+    event_date = event.start_date.to_date.to_s if event.start_date
     event.destroy if event
-    redirect_to calendar_path
+    redirect_to calendar_path(show_date_params(event_date))
   end
 
   def leave
@@ -129,7 +131,7 @@ class EventsController < ApplicationController
       repeat_event.update_attribute(:end_date, repeat_event.start_date + 1.hour) if repeat_event.start_date
       days_diff = (repeat_event.start_date.to_date - @event.start_date.to_date).to_i
       repeat_event.update_attribute(:book_by_date, @event.book_by_date + days_diff.days) if @event.book_by_date
-      redirect_to calendar_path
+      redirect_to calendar_path(show_date_params(repeat_event.start_date))
     rescue
       flash[:danger] = "An error occured, please try again"
       render action: :show
@@ -159,10 +161,10 @@ class EventsController < ApplicationController
         new_event.update_attribute(:book_by_date, @event.book_by_date + days_diff.days) if @event.book_by_date
         new_date -= 7.days
       end
-      redirect_to calendar_path
+      redirect_to calendar_path(show_date_params(new_date.to_date))
     rescue
       flash[:danger] = "An error occured, please try again"
-      redirect_to calendar_path
+      redirect_to calendar_path(show_date_params(@event.start_date))
     end
   end
 

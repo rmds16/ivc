@@ -45,7 +45,7 @@
   </div>
  </div>
  <div class="col-xs-6">
-   <%= link_to "Close", calendar_path, class: 'pull-right' %>
+   <%= link_to "Close", calendar_path(show_date_params(@event.start_date)), class: 'pull-right' %>
  </div>
 </div>
 

@@ -44,6 +44,13 @@ $(document).ready(function() {
     }
   });
 
+  if($('#calendar').data('date')) {
+    var show_date = $.fullCalendar.moment($('#calendar').data('date'));
+    if (show_date) {
+      $('#calendar').fullCalendar('gotoDate', show_date);
+    }
+  }
+
   $('#event_organiser_id').select2({theme: 'bootstrap'});
   $('#event_second_organiser_id').select2({theme: 'bootstrap'});
 

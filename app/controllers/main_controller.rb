@@ -2,6 +2,7 @@ class MainController < ApplicationController
   layout :resolve_layout
   
   def calendar
+    @current_date = params[:date] ? Time.parse(params[:date]).to_i*1000 : Time.now.to_i*1000
   end
 
   def introduction
