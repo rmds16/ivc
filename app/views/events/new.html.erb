@@ -7,5 +7,5 @@
   <%= form_errors_for @event %>
   <%= render partial: 'helpers/event_fields', locals: { f: f } %>
   <br />
-  <%= f.submit "Create" %>
+  <%= f.submit "Create" %><%= link_to 'Cancel', :back, class: 'btn btn-default', data: { confirm: "Cancel new event?" } %>
 <% end %>
