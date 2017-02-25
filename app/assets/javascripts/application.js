@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.autosize
 //= require bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
@@ -78,6 +79,8 @@ $(document).ready(function() {
   $( function() {
     $( "#tabs" ).tabs();
   });
+
+  $('textarea').autosize();
 });
 
 //= require turbolinks

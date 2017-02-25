@@ -48,6 +48,7 @@ gem 'bootstrap_form'
 gem 'jquery-ui-rails'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 gem 'select2-rails', '4.0.3'
+gem 'autosize-rails', '1.18.17'
 
 gem 'wicked_pdf', '1.1.0'
 gem 'wkhtmltopdf-binary', '0.12.3.1'
