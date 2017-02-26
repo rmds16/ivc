@@ -79,7 +79,7 @@
      <div class="row">
       <div class="col-sm-6">
        <%= label_tag "Repeat every" %>
-       <%= select_tag(:day_of_week, options_for_select(@days, selected: @event.start_date.wday) ) %>
+       <%= select_day_of_week(@event.start_date ? @event.start_date.wday : DateTime.now.wday) %>
       </div>
       <div class="col-sm-6">
        <%= label_tag "At" %>
