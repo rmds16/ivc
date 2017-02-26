@@ -12,9 +12,10 @@ class Event < ActiveRecord::Base
   def as_json(current_user)
     {
 	  title: title,
+    tooltip: current_user.present? ? title : "Please sign in to view details",
 	  start: start_date,
 	  end: end_date,
-	  url: current_user.present? ? Rails.application.routes.url_helpers.event_path(id) : '',
+	  url: Rails.application.routes.url_helpers.event_path(id),
 	  className: featured_event? ? 'featured-event' : 'standard-event'
     }
   end

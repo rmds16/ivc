@@ -44,6 +44,7 @@ class ApplicationController < ActionController::Base
   def signed_in_user
     unless current_user
       store_location
+      flash[:danger] = "Please sign in to continue"
       redirect_to signin_path
     end
   end

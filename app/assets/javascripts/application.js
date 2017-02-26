@@ -37,7 +37,7 @@ $(document).ready(function() {
     ],
 
     eventRender: function(event, element) {
-      $(element).tooltip({title: event.title, container: 'body'});             
+      $(element).tooltip({title: event.tooltip, container: 'body'});             
     },
 
     dayClick: function(date, jsEvent, view) {
