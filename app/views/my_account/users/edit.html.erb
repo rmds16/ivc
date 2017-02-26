@@ -5,5 +5,13 @@
 
 <%= bootstrap_form_for @user, url: my_account_user_path do |f| %>
   <%= render partial: "helpers/user_fields", locals: { form: f } %>
-  <%= f.submit "Update" %>
+  <hr />
+  <div class="row">
+    <div class="col-sm-6">
+      <%= link_to 'Cancel', my_account_user_path(@user), data: { confirm: "Cancel update?" } %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.submit "Update", class: 'pull-right btn btn-default' %>
+    </div>
+  </div>
 <% end %>
