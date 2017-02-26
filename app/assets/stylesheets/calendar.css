@@ -15,6 +15,10 @@
   font-size: 12px;
 }
 
+.fc-day-grid-event .fc-content {
+  white-space: normal;
+}
+
 /* Event attendees */
 
 .attendee div {
