@@ -42,3 +42,10 @@
   cursor: pointer;
 }
 
+.clear-date {
+  left: -20px;
+  margin-top: 32px;
+  position: absolute;
+  cursor: pointer;
+}
+

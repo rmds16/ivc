@@ -86,6 +86,9 @@ $(document).ready(function() {
     $('#form_modify_event').click();
   });
 
+  $(document).on("click",".clear-date",function(e) {
+    $(e.target).closest('.row').find('.rails-bootstrap-forms-date-select').find('select').val('')
+  });
 });
 
 //= require turbolinks
