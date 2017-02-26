@@ -36,3 +36,9 @@
 .repeat-dropdown .row { 
   margin-top:20px;
 }
+
+.modify-event-link {
+  padding-left: 25px;
+  cursor: pointer;
+}
+

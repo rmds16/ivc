@@ -81,6 +81,11 @@ $(document).ready(function() {
   });
 
   $('textarea').autosize();
+
+  $(document).on("click",".modify-event-link",function() {
+    $('#form_modify_event').click();
+  });
+
 });
 
 //= require turbolinks

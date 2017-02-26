@@ -3,9 +3,16 @@
    @title_link = new_event_path
 %>
 
-<%= bootstrap_form_for @event do |f| %>
+<%= bootstrap_form_for @event, url: review_events_path, method: :post do |f| %>
   <%= form_errors_for @event %>
   <%= render partial: 'helpers/event_fields', locals: { f: f } %>
-  <br />
-  <%= f.submit "Create" %><%= link_to 'Cancel', :back, class: 'btn btn-default', data: { confirm: "Cancel new event?" } %>
+  <hr />
+  <div class="row">
+    <div class="col-sm-6">
+      <%= link_to 'Cancel', calendar_path, data: { confirm: "Cancel new event?" } %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.submit "Create", class: 'pull-right btn btn-default' %>
+    </div>
+  </div>
 <% end %>

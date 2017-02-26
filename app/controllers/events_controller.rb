@@ -14,6 +14,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def review
+    @event = Event.new(event_params)
+    @event.start_date = DateTime.parse(event_params[:start_date]) if params[:start_date]
+    @event.end_date = @event.start_date + 1.hour if @event.start_date
+    @event.user = current_user
+    @organisers = User.organisers
+    unless @event.valid?
+      render action: :new
+    end
+  end
+
   def index
     return [] unless params['start'] && params['end']
 
@@ -28,7 +39,7 @@ class EventsController < ApplicationController
     @event.start_date = DateTime.parse(event_params[:start_date]) if params[:start_date]
     @event.end_date = @event.start_date + 1.hour if @event.start_date
     @event.user = current_user
-    if @event.save
+    if params[:commit] == 'Create' && @event.save
       flash[:success] = "Event created!"
       redirect_back_or_default calendar_path(show_date_params(@event.start_date))
     else
@@ -39,8 +50,6 @@ class EventsController < ApplicationController
   
   def show
     @event = Event.find_by(id: params[:id])
-    @days = []
-    Date::DAYNAMES.each_with_index { |x, i| @days << [x, i] }
   end
 
   def edit
@@ -125,7 +134,7 @@ class EventsController < ApplicationController
 
   def repeat_once
     begin
-      @event = Event.find_by(params[:event_id])
+      @event = Event.find_by(id: params[:event_id])
       repeat_event = @event.dup
       repeat_event.update_attributes(event_params)
       repeat_event.update_attribute(:end_date, repeat_event.start_date + 1.hour) if repeat_event.start_date
@@ -140,7 +149,7 @@ class EventsController < ApplicationController
 
   def repeat_weekly
     begin
-      @event = Event.find_by(params[:event_id])
+      @event = Event.find_by(id: params[:event_id])
 
       start_date = DateTime.new(params['weekly_start_date']['year'].to_i, params['weekly_start_date']['month'].to_i, params['weekly_start_date']['day'].to_i, params['weekly_start_time']['hour'].to_i, params['weekly_start_time']['minute'].to_i)
       end_date = DateTime.new(params['weekly_end_date']['year'].to_i, params['weekly_end_date']['month'].to_i, params['weekly_end_date']['day'].to_i, params['weekly_start_time']['hour'].to_i, params['weekly_start_time']['minute'].to_i)
@@ -171,6 +180,7 @@ class EventsController < ApplicationController
   def search_event
     @start_date = DateTime.now
     @end_date = DateTime.now + 7.days
+    @search_title = params['title']
 
     if params['start_date(3i)'].present? && params['end_date(3i)'].present?
       begin
@@ -178,7 +188,7 @@ class EventsController < ApplicationController
         @end_date = Date.civil(params['end_date(1i)'].to_i, params['end_date(2i)'].to_i, params['end_date(3i)'].to_i)
       rescue => e
         flash[:danger] = "Please enter a valid date range"
-        @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date)
+        @events = []
         respond_to do |format|
           format.html
           format.pdf do
@@ -194,7 +204,7 @@ class EventsController < ApplicationController
 
     if @start_date.to_date > @end_date.to_date
       flash[:danger] = "Please enter a valid date range"
-      @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date)
+      @events = []
       respond_to do |format|
         format.html
         format.pdf do
@@ -204,7 +214,11 @@ class EventsController < ApplicationController
       return
     end
 
-    @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date)
+    if @search_title
+      @events = Event.where("start_date > ? && start_date < ? AND (title like '%#{@search_title}%')", @start_date, @end_date).order(:start_date)
+    else
+      @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date)
+    end
 
     respond_to do |format|
       format.html
@@ -212,6 +226,10 @@ class EventsController < ApplicationController
         render pdf: "ivc_events"
       end
     end
+  end
+
+  def search_title
+    render json: Event.where("title like '%#{params[:term]}%'").to_json
   end
 
   private

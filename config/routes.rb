@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     collection do
       get :search_event
       post :search_event
+      post :review
     end
   end
 

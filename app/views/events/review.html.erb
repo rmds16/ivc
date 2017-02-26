@@ -1,0 +1,27 @@
+<%
+   @title = "Confirm New Event"
+   @title_link = new_event_path
+%>
+
+<%= render partial: 'helpers/event_details' %>
+
+<hr/>
+
+<%= bootstrap_form_for @event do |f| %>
+<div style="display: none;">
+  <%= form_errors_for @event %>
+  <%= render partial: 'helpers/event_fields', locals: { f: f } %>
+</div>
+<div class="row">
+  <div class="col-sm-7">
+    <%= link_to 'Cancel', calendar_path, data: { confirm: "Cancel new event?" } %>
+  </div>
+  <div class="col-sm-4">
+    <%= f.submit 'Modify', class: 'hidden', id: 'form_modify_event' %>
+    <%= content_tag(:a, 'I still need to modify the event', class: 'modify-event-link') %>
+  </div>
+  <div class="col-sm-1">
+    <%= f.submit "Create", class: 'btn btn-default pull-right' %>
+  </div>
+</div>
+<% end %>
