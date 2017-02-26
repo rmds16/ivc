@@ -6,6 +6,13 @@
 <%= bootstrap_form_for @event do |f| %>
   <%= form_errors_for @event %>
   <%= render partial: 'helpers/event_fields', locals: { f: f } %>
-  <br />
-  <%= f.submit "Update" %>
+  <hr />
+  <div class="row">
+    <div class="col-sm-6">
+      <%= link_to 'Cancel', event_path(@event), data: { confirm: "Cancel update?" } %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.submit "Update", class: 'pull-right btn btn-default' %>
+    </div>
+  </div>
 <% end %>
