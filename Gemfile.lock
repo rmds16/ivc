@@ -273,7 +273,7 @@ PLATFORMS
 DEPENDENCIES
   authlogic (= 3.5.0)
   autoprefixer-rails
-  autosize-rails
+  autosize-rails (= 1.18.17)
   bootstrap-sass
   bootstrap-sass-extras
   bootstrap3-datetimepicker-rails (~> 4.17.43)
