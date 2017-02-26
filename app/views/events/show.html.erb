@@ -93,7 +93,7 @@
       </div>
       <div class="col-sm-6">
        <%= label_tag "To" %>
-       <%= select_date(@event.end_date, { prefix: 'weekly_end_date', selected: @event.start_date + 1.month, order: [:day, :month, :year] } ) %>
+       <%= select_date(@event.start_date ? @event.start_date + 1.month : DateTime.now, { prefix: 'weekly_end_date', order: [:day, :month, :year] } ) %>
       </div>
      </div>
      <div class="row">
