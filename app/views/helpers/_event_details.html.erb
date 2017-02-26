@@ -6,7 +6,7 @@
 </div>
 <div class="row">
  <div class="col-xs-2">Date: </div>
- <div class="col-xs-10"> <%= @event.start_date.to_formatted_s(:long) if @event.start_date %></div>
+ <div class="col-xs-10"> <%= @event.start_date.strftime("%A #{@event.start_date.day.ordinalize} %B %G %H:%M") if @event.start_date %></div>
 </div>
 <br/>
 <div class="row">
@@ -21,7 +21,7 @@
 <br />
 <div class="row">
  <div class="col-xs-2">Book by date: </div>
- <div class="col-xs-10"> <%= @event.book_by_date.to_date.to_formatted_s(:long) if @event.book_by_date %></div>
+ <div class="col-xs-10"> <%= @event.book_by_date.strftime("%A #{@event.start_date.day.ordinalize} %B %G") if @event.book_by_date %></div>
 </div>
 <br/>
 <div class="row">
