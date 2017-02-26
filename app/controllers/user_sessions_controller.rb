@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
   def create
     @user_session = UserSession.new(user_session_params)
     if @user_session.save
-      flash[:success] = "Login successful!"
+      flash[:success] = "Hello #{@user_session.user.first_name}!"
       redirect_back_or_default calendar_path
     else
       render action: :new
