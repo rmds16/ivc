@@ -4,7 +4,7 @@ module UsersHelper
   def avatar(user)
   	return unless user && user.email
     hash = Digest::MD5.hexdigest(user.email)
-    image_tag("https://www.gravatar.com/avatar/#{hash}?d=mm&f=y")
+    link_to image_tag("https://www.gravatar.com/avatar/#{hash}?d=mm&f=y"), "http://www.gravatar.com", title: "Click to update image"
   end
 
   def avatar_icon(user)
