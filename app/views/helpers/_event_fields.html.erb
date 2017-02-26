@@ -44,8 +44,6 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-12">
-     <%= f.date_select(:book_by_date, default: DateTime.now, order: [:day, :month, :year] ) %>
   <div class="col-sm-5">
      <%= f.date_select(:book_by_date, include_blank: true, default: nil, order: [:day, :month, :year] ) %>
   </div>
