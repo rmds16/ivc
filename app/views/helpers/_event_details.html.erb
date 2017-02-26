@@ -16,7 +16,7 @@
 <br/>
 <div class="row">
  <div class="col-xs-2">Post code: </div>
- <div class="col-xs-10"> <%= @event.post_map_ref %></div>
+ <div class="col-xs-10"> <%= @event.post_map_ref.try(:upcase) %></div>
 </div>
 <br />
 <div class="row">
