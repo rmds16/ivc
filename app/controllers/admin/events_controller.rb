@@ -43,7 +43,7 @@ class Admin::EventsController < AdminController
     @event = Event.new(event_params)
     if @event.save
       flash[:success] = "Event created!"
-      redirect_back_or_default admin_event_path
+      redirect_back_or_default admin_events_path
     else
       @organisers = User.organisers
       render action: :new
