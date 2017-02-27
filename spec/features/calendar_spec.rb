@@ -28,7 +28,10 @@ describe "the calendar options", type: :feature do
       FactoryGirl.create(:event)
       visit calendar_path
       expect(page).to have_content("Test Event")
-      expect(page).to_not have_link("Test Event")
+      expect(page).to have_link("Test Event")
+      click_on "Test Event"
+      expect(page).to have_content 'Please sign in to continue'
+      expect(page).to have_current_path(signin_path)
     end
   end
 end

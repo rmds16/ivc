@@ -9,43 +9,79 @@ describe "create an event", type: :feature do
       log_in_as test_user
     end
 
-    it "can create an event" do
-      Timecop.freeze do
+    context "create a new event" do
+
+      context "valid data" do
+        Timecop.freeze do
+          before do
+            visit new_event_path
+            fill_in 'Title', with: 'Test New Event'
+            fill_in 'Location', with: 'New event location'
+            fill_in 'Post Code', with: 'AB4 5LE'
+            fill_in 'Description', with: 'New event description'
+            select test_user.full_name, from: "Organiser"
+            fill_in 'Organiser phone', with: '0123456789'
+            click_button 'Create'
+          end
+
+          it "asks the user to review  the new event" do
+            expect(page).to have_current_path(review_events_path)
+            expect(page).to have_content('Test New Event')
+            expect(page).to have_content('New event location')
+            expect(page).to have_content('AB4 5LE')
+            expect(page).to have_content('New event description')
+            expect(page).to have_content('I still need to modify the event')
+            expect(page).to have_link('Cancel')
+            expect(page).to have_button('Create')
+          end
+
+          it "adds the event to the calendar once confirmed" do
+            click_button('Create')
+            expect(page).to have_current_path(calendar_path(date: DateTime.now.to_date.to_s))
+          end
+
+          it "returns to the event page if modifications are still needed" do
+            expect(page).to have_content('I still need to modify the event')
+            find('.modify-event-link', text: 'I still need to modify the event').click
+            expect(page).to have_current_path(review_events_path)
+            expect(page).to have_content('Test New Event')
+            expect(page).to have_content('New event location')
+            expect(page).to have_content('AB4 5LE')
+            expect(page).to have_content('New event description')
+            expect(page).to have_content('I still need to modify the event')
+          end
+
+          it "returns to the calendar page if cancelled" do
+            click_link('Cancel')
+            expect(page).to have_current_path(calendar_path)
+          end
+        end
+      end
+
+      it "raises an error if the title is missing" do
         visit new_event_path
-        fill_in 'Title', with: 'Test New Event'
         fill_in 'Location', with: 'New event location'
         fill_in 'Post Code', with: 'AB4 5LE'
         fill_in 'Description', with: 'New event description'
         select test_user.full_name, from: "Organiser"
         fill_in 'Organiser phone', with: '0123456789'
         click_button 'Create'
-        expect(page).to have_current_path(calendar_path(date: DateTime.now.to_date.to_s))
+        expect(page).to have_current_path(review_events_path)
+        expect(page).to have_content("Title can't be blank")
       end
-    end
 
-    it "raises an error if the title is missing" do
-      visit new_event_path
-      fill_in 'Location', with: 'New event location'
-      fill_in 'Post Code', with: 'AB4 5LE'
-      fill_in 'Description', with: 'New event description'
-      select test_user.full_name, from: "Organiser"
-      fill_in 'Organiser phone', with: '0123456789'
-      click_button 'Create'
-      expect(page).to have_current_path(events_path)
-      expect(page).to have_content("Title can't be blank")
-    end
-
-    it "raises an error if the organiser is missing" do
-      visit new_event_path
-      fill_in 'Title', with: 'Test New Event'
-      fill_in 'Location', with: 'New event location'
-      fill_in 'Post Code', with: 'AB4 5LE'
-      fill_in 'Description', with: 'New event description'
-      fill_in 'Organiser phone', with: '0123456789'
-      select "", from: "Organiser"
-      click_button 'Create'
-      expect(page).to have_current_path(events_path)
-      expect(page).to have_content("Organiser please select an organiser")
+      it "raises an error if the organiser is missing" do
+        visit new_event_path
+        fill_in 'Title', with: 'Test New Event'
+        fill_in 'Location', with: 'New event location'
+        fill_in 'Post Code', with: 'AB4 5LE'
+        fill_in 'Description', with: 'New event description'
+        fill_in 'Organiser phone', with: '0123456789'
+        select "", from: "Organiser"
+        click_button 'Create'
+        expect(page).to have_current_path(review_events_path)
+        expect(page).to have_content("Organiser please select an organiser")
+      end
     end
   end
 
@@ -67,18 +103,18 @@ describe "the event options", type: :feature do
 
     it "can access the event if the user is logged in" do
       Timecop.freeze(DateTime.parse("2017-02-11 20:00")) do
-        test_event.update_attributes(start_date: DateTime.now, book_by_date: DateTime.now + 1.day)
+        test_event.update_attributes(start_date: DateTime.now, book_by_date: DateTime.now - 1.day)
         visit event_path(test_event)
         expect(page).to have_current_path(event_path(test_event))
         expect(page).to have_content("Test Event")
-        expect(page).to have_content("Start:")
-        expect(page).to have_content("February 11, 2017 20:00")
+        expect(page).to have_content("Date:")
+        expect(page).to have_content("Saturday 11th February 2017 20:00")
         expect(page).to have_content("Location:")
         expect(page).to have_content("Location description")
         expect(page).to have_content("Post code:")
         expect(page).to have_content("ET1 3ST")
         expect(page).to have_content("Book by date:")
-        expect(page).to have_content("February 12, 2017")
+        expect(page).to have_content("Friday 10th February 2017")
         expect(page).to have_content("Description:")
         expect(page).to have_content("A public description")
         expect(page).to have_content("Organiser:")
@@ -232,18 +268,18 @@ describe "the event options", type: :feature do
 
     it "can access the event if the user is logged in" do
       Timecop.freeze(DateTime.parse("2017-02-11 20:00")) do
-        test_event.update_attributes(start_date: DateTime.now, book_by_date: DateTime.now + 1.day)
+        test_event.update_attributes(start_date: DateTime.now, book_by_date: DateTime.now - 1.day)
         visit event_path(test_event)
         expect(page).to have_current_path(event_path(test_event))
         expect(page).to have_content("Test Event")
-        expect(page).to have_content("Start:")
-        expect(page).to have_content("February 11, 2017 20:00")
+        expect(page).to have_content("Date:")
+        expect(page).to have_content("Saturday 11th February 2017 20:00")
         expect(page).to have_content("Location:")
         expect(page).to have_content("Location description")
         expect(page).to have_content("Post code:")
         expect(page).to have_content("ET1 3ST")
         expect(page).to have_content("Book by date:")
-        expect(page).to have_content("February 12, 2017")
+        expect(page).to have_content("Friday 10th February 2017")
         expect(page).to have_content("Description:")
         expect(page).to have_content("A public description")
         expect(page).to have_content("Organiser:")
