@@ -35,7 +35,7 @@ class Ability
     else
       can :read, :none
       can [:create, :destroy], UserSession
-      can [:read, :create, :signup, :leave, :repeat_once, :repeat_weekly, :search_event, :review], Event
+      can [:read, :create, :signup, :leave, :repeat_once, :repeat_weekly, :search_event, :search_title, :review], Event
       can [:create, :user_details], User
       can [:read, :edit, :update], User, id: user.id
       can [:destroy, :edit, :update, :remove_attendee], Event do |event|

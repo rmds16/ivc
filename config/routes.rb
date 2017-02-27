@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post :repeat_once
     post :repeat_weekly
     collection do
+      get :search_title
       get :search_event
       post :search_event
       post :review

@@ -52,6 +52,12 @@ $(document).ready(function() {
     }
   }
 
+  $('#search-title').autocomplete({
+    source: "/events/search_title",
+    minLength: 2,
+    html: true
+  });
+
   $('#event_organiser_id').select2({theme: 'bootstrap'});
   $('#event_second_organiser_id').select2({theme: 'bootstrap'});
 

@@ -1,4 +1,8 @@
-<h3>IVC Events: <%= @start_date.to_date.to_formatted_s(:long) %> to <%= @end_date.to_date.to_formatted_s(:long) %></h3>
+<h3>IVC Events: <%= @start_date.to_date.to_formatted_s(:long) %> to <%= @end_date.to_date.to_formatted_s(:long) %>
+<% if @search_title %>
+matching '<%= @search_title.to_s %>'
+<% end %>
+</h3>
 
 <% @events.each do |event| %>
   <% @event = event %>

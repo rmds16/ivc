@@ -180,12 +180,17 @@ class EventsController < ApplicationController
   def search_event
     @start_date = DateTime.now
     @end_date = DateTime.now + 7.days
-    @search_title = params['title']
+    @search_title = params['search_title']
 
-    if params['start_date(3i)'].present? && params['end_date(3i)'].present?
+    if params.present?
       begin
-        @start_date = Date.civil(params['start_date(1i)'].to_i, params['start_date(2i)'].to_i, params['start_date(3i)'].to_i)
-        @end_date = Date.civil(params['end_date(1i)'].to_i, params['end_date(2i)'].to_i, params['end_date(3i)'].to_i)
+        if params['start_date(3i)'].present? && params['end_date(3i)'].present?
+          @start_date = Date.civil(params['start_date(1i)'].to_i, params['start_date(2i)'].to_i, params['start_date(3i)'].to_i)
+          @end_date = Date.civil(params['end_date(1i)'].to_i, params['end_date(2i)'].to_i, params['end_date(3i)'].to_i)
+        elsif params['start_date'] && params['end_date']
+          @start_date = Date.parse(params['start_date'])
+          @end_date = Date.parse(params['end_date'])
+        end
       rescue => e
         flash[:danger] = "Please enter a valid date range"
         @events = []
@@ -229,7 +234,7 @@ class EventsController < ApplicationController
   end
 
   def search_title
-    render json: Event.where("title like '%#{params[:term]}%'").to_json
+    render json: Event.where("title like '%#{params[:term]}%'").pluck(:title).uniq.to_json
   end
 
   private
