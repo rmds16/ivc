@@ -3,3 +3,12 @@
 .organiser-details div {
   padding-left: 0px;
 }
+
+/* Event creation */
+
+.clear-date {
+  left: -170px;
+  margin-top: 32px;
+  position: absolute;
+  cursor: pointer;
+}
