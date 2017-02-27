@@ -21,7 +21,7 @@
 <br />
 <div class="row">
  <div class="col-xs-2">Book by date: </div>
- <div class="col-xs-10"> <%= @event.book_by_date.strftime("%A #{@event.start_date.day.ordinalize} %B %G") if @event.book_by_date %></div>
+ <div class="col-xs-10"> <%= @event.book_by_date.strftime("%A #{@event.book_by_date.day.ordinalize} %B %G") if @event.book_by_date %></div>
 </div>
 <br/>
 <div class="row">
