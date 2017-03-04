@@ -92,10 +92,15 @@ $(document).ready(function() {
     $('#form_modify_event').click();
   });
 
-  $(document).on("click",".clear-date",function(e) {
+  $(document).on("click","#no_book_by_date",function(e) {
     var date_select = $(e.target).closest('.row').find('.rails-bootstrap-forms-date-select').find('select');
     if (date_select) {
-      date_select.prop("disabled", (_, val) => !val);
+      if($(e.target).prop('checked')){
+        date_select.prop("disabled", true);
+      }
+      else {
+        date_select.prop("disabled", false);
+      }
     }
   });
 });
