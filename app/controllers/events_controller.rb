@@ -34,7 +34,10 @@ class EventsController < ApplicationController
     start_date = Date.parse(params['start'])
     end_date = Date.parse(params['end'])
 
-    session[:calendar] = Time.parse(params['start']).to_i*1000
+    return [] unless start_date && end_date
+
+    calendar_date = start_date + 10.days
+    session[:calendar] = Time.parse(calendar_date.to_date.to_s).to_i*1000
 
     render json: Event.where(start_date: start_date..end_date).to_json(current_user)
   end

@@ -2,7 +2,8 @@ class MainController < ApplicationController
   layout :resolve_layout
   
   def calendar
-    @current_date = session[:calendar] ? session[:calendar] : Time.now.to_i*1000
+    calendar_date = DateTime.now.beginning_of_month + 10.days
+    @current_date = session[:calendar] ? session[:calendar] : Time.parse(calendar_date.to_date.to_s).to_i*1000
   end
 
   def introduction
