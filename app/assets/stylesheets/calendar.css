@@ -17,6 +17,7 @@
 
 .fc-day-grid-event .fc-content {
   white-space: normal;
+  text-align: center;
 }
 
 /* Event attendees */
