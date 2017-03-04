@@ -32,11 +32,11 @@ describe "create an event", type: :feature do
             expect(page).to have_content('New event description')
             expect(page).to have_content('I still need to modify the event')
             expect(page).to have_link('Cancel')
-            expect(page).to have_button('Create')
+            expect(page).to have_button('Submit')
           end
 
           it "adds the event to the calendar once confirmed" do
-            click_button('Create')
+            click_button('Submit')
             expect(page).to have_current_path(calendar_path(date: DateTime.now.to_date.to_s))
           end
 
