@@ -8,9 +8,11 @@ class EventsController < ApplicationController
     @event.organiser_id = current_user.id
     @event.organiser_email = current_user.email
     @event.organiser_phone = current_user.phone
+    @event.book_by_date = DateTime.now
     if params['date']
       @event.start_date = Date.parse(params['date']) 
       @event.end_date = Date.parse(params['date'])
+      @event.book_by_date = Date.parse(params['date'])
     end
   end
 
@@ -18,6 +20,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.start_date = DateTime.parse(event_params[:start_date]) if params[:start_date]
     @event.end_date = @event.start_date + 1.hour if @event.start_date
+    @event.book_by_date = DateTime.parse(event_params[:book_by_date]) if params[:book_by_date]
     @event.user = current_user
     @organisers = User.organisers
     unless @event.valid?
@@ -40,6 +43,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.start_date = DateTime.parse(event_params[:start_date]) if params[:start_date]
     @event.end_date = @event.start_date + 1.hour if @event.start_date
+    @event.book_by_date = nil if params[:no_book_by_date]
     @event.user = current_user
     if params[:commit] == 'Submit' && @event.save
       flash[:success] = "Event created!"
@@ -64,6 +68,7 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:id])
     if @event.update_attributes(event_params)
       @event.update_attribute(:end_date, @event.start_date + 1.hour) if @event.start_date
+      @event.update_attribute(:book_by_date, nil) if params[:no_book_by_date]
       flash[:success] = "Event updated!"
       session[:calendar] = Time.parse(@event.start_date.to_date.to_s).to_i*1000 if @event.start_date
       redirect_to calendar_path

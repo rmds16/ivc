@@ -93,7 +93,10 @@ $(document).ready(function() {
   });
 
   $(document).on("click",".clear-date",function(e) {
-    $(e.target).closest('.row').find('.rails-bootstrap-forms-date-select').find('select').val('')
+    var date_select = $(e.target).closest('.row').find('.rails-bootstrap-forms-date-select').find('select');
+    if (date_select) {
+      date_select.prop("disabled", (_, val) => !val);
+    }
   });
 });
 
