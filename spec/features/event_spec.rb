@@ -37,7 +37,7 @@ describe "create an event", type: :feature do
 
           it "adds the event to the calendar once confirmed" do
             click_button('Submit')
-            expect(page).to have_current_path(calendar_path(date: DateTime.now.to_date.to_s))
+            expect(page).to have_current_path(calendar_path)
           end
 
           it "returns to the event page if modifications are still needed" do

@@ -31,6 +31,8 @@ class EventsController < ApplicationController
     start_date = Date.parse(params['start'])
     end_date = Date.parse(params['end'])
 
+    session[:calendar] = Time.parse(params['start']).to_i*1000
+
     render json: Event.where(start_date: start_date..end_date).to_json(current_user)
   end
 
@@ -39,9 +41,10 @@ class EventsController < ApplicationController
     @event.start_date = DateTime.parse(event_params[:start_date]) if params[:start_date]
     @event.end_date = @event.start_date + 1.hour if @event.start_date
     @event.user = current_user
-    if params[:commit] == 'Create' && @event.save
+    if params[:commit] == 'Submit' && @event.save
       flash[:success] = "Event created!"
-      redirect_back_or_default calendar_path(show_date_params(@event.start_date))
+      session[:calendar] = Time.parse(@event.start_date.to_date.to_s).to_i*1000 if @event.start_date
+      redirect_back_or_default calendar_path
     else
       @organisers = User.organisers
       render action: :new
@@ -62,7 +65,8 @@ class EventsController < ApplicationController
     if @event.update_attributes(event_params)
       @event.update_attribute(:end_date, @event.start_date + 1.hour) if @event.start_date
       flash[:success] = "Event updated!"
-      redirect_to calendar_path(show_date_params(@event.start_date.to_date))
+      session[:calendar] = Time.parse(@event.start_date.to_date.to_s).to_i*1000 if @event.start_date
+      redirect_to calendar_path
     else
       @organisers = User.organisers
       render action: :edit
@@ -92,7 +96,8 @@ class EventsController < ApplicationController
     event = Event.find_by(id: params['id'])
     event_date = event.start_date.to_date.to_s if event.start_date
     event.destroy if event
-    redirect_to calendar_path(show_date_params(event_date))
+    session[:calendar] = Time.parse(event_date).to_i*1000 if event_date
+    redirect_to calendar_path
   end
 
   def leave
@@ -140,7 +145,8 @@ class EventsController < ApplicationController
       repeat_event.update_attribute(:end_date, repeat_event.start_date + 1.hour) if repeat_event.start_date
       days_diff = (repeat_event.start_date.to_date - @event.start_date.to_date).to_i
       repeat_event.update_attribute(:book_by_date, @event.book_by_date + days_diff.days) if @event.book_by_date
-      redirect_to calendar_path(show_date_params(repeat_event.start_date))
+      session[:calendar] = Time.parse(repeat_event.start_date.to_date.to_s).to_i*1000
+      redirect_to calendar_path
     rescue
       flash[:danger] = "An error occured, please try again"
       render action: :show
@@ -170,10 +176,12 @@ class EventsController < ApplicationController
         new_event.update_attribute(:book_by_date, @event.book_by_date + days_diff.days) if @event.book_by_date
         new_date -= 7.days
       end
-      redirect_to calendar_path(show_date_params(new_date.to_date))
+      session[:calendar] = Time.parse(new_date.to_date.to_s).to_i*1000
+      redirect_to calendar_path
     rescue
       flash[:danger] = "An error occured, please try again"
-      redirect_to calendar_path(show_date_params(@event.start_date))
+      session[:calendar] = Time.parse(@event.start_date.to_date.to_s).to_i*1000 if @event && @event.start_date
+      redirect_to calendar_path
     end
   end
 
