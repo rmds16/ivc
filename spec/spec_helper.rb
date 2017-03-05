@@ -110,6 +110,11 @@ def log_in_as(user)
   fill_in 'Password', with: 'password'
 
   click_button 'Login'
+
+  fill_in 'Password', with: 'password'
+  fill_in 'Password confirmation', with: 'password'
+
+  click_button 'Update Password'
 end
 
 def log_out

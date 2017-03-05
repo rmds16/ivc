@@ -7,7 +7,16 @@ class UserSessionsController < ApplicationController
   
   def create
     @user_session = UserSession.new(user_session_params)
+
     if @user_session.save
+      unless @user_session.user.last_login_at
+        user = @user_session.user
+        flash[:success] = "Hello #{user.first_name}, welcome to IVC!"
+        @user_session.destroy
+        redirect_to password_reset_edit_url(user.perishable_token)
+        return
+      end
+
       flash[:success] = "Hello #{@user_session.user.first_name}!"
       redirect_back_or_default calendar_path
     else
