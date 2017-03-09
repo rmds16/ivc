@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   load_and_authorize_resource
-  before_filter :signed_in_user, except: :index
+  before_action :signed_in_user, except: :index
 
   def new
     @organisers = User.organisers

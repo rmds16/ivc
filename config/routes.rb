@@ -55,7 +55,7 @@ Rails.application.routes.draw do
     resources :events do
       get :leave
     end
-    root "users#index"
+    root controller: :users, action: :index, as: :root
   end
 
   namespace :my_account do
