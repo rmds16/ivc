@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   get 'password_reset/:id/' => 'password_reset#edit', as: :password_reset_edit
   post 'password_reset/:id/' => 'password_reset#update', as: :password_reset_update
 
+  mount ActionCable.server => '/cable'
+
   namespace :admin do
     resources :users
     resources :events do

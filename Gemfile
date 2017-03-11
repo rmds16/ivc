@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'passenger', '5.1.1'
+gem 'redis'
 
 gem 'mysql2', '0.4.5'
 

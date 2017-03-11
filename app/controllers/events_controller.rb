@@ -51,6 +51,7 @@ class EventsController < ApplicationController
     if params[:commit] == 'Submit' && @event.save
       flash[:success] = "Event created!"
       session[:calendar] = Time.parse(@event.start_date.to_date.to_s).to_i*1000 if @event.start_date
+      ActionCable.server.broadcast 'calendar_channel', message: "created"
       redirect_back_or_default calendar_path
     else
       @organisers = User.organisers
