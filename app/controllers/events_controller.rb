@@ -236,9 +236,9 @@ class EventsController < ApplicationController
     end
 
     if @search_title
-      @events = Event.where("start_date > ? && start_date < ? AND (title like '%#{@search_title}%')", @start_date, @end_date).order(:start_date)
+      @events = Event.where("start_date > ? && start_date < ? AND (title like '%#{@search_title}%')", @start_date, @end_date).order(:start_date).group_by { |event| event.start_date.to_date }
     else
-      @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date)
+      @events = Event.where("start_date > ? && start_date < ?", @start_date, @end_date).order(:start_date).group_by { |event| event.start_date.to_date }
     end
 
     respond_to do |format|

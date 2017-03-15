@@ -4,9 +4,18 @@ matching '<%= @search_title.to_s %>'
 <% end %>
 </h3>
 
-<% @events.each do |event| %>
-  <% @event = event %>
-  <%= render partial: 'helpers/event_details' if @event.present? %>
-  <br />
-  <br />
+<% @events.each do |date, events| %>
+  <div class="row">
+   <div class="col-xs-12"><h3><%= date.strftime("%A #{date.day.ordinalize} %B %G") %></h3></div>
+  </div>
+  <div class="row">
+   <div class="col-xs-12">
+     <% events.each do |event| %>
+       <% @event = event %>
+       <%= render partial: 'helpers/event_details' if @event.present? %>
+     <br />
+     <br />
+     <% end %>
+   </div>
+  </div>
 <% end %>

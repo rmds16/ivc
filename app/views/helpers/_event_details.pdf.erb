@@ -1,9 +1,10 @@
-<h3><%= @event.title %></h3>
 <table width="100%">
 <tr>
- <td width="150">Start: </td>
- <td> <%= @event.start_date.to_formatted_s(:long) %></td>
-</td>
+ <td colspan="2"><strong><%= @event.title %></strong></td>
+</tr>
+<tr>
+ <td width="150">Time: </td>
+ <td> <%= @event.start_date.to_formatted_s(:time) %></td>
 </tr>
 <tr>
  <td>Location:</td>
@@ -14,12 +15,8 @@
  <td><%= @event.post_map_ref %></td>
 </td>
 <tr>
- <td>Book by date: </td>
- <td> <%= @event.book_by_date.to_date.to_formatted_s(:long) if @event.book_by_date %></td>
-</tr>
-<tr>
- <td valign="top">Description:</td>
- <td><%= simple_format(@event.public_description) %></td>
+ <td>Prebook by: </td>
+ <td> <%= @event.book_by_date.to_date.strftime("%A #{@event.book_by_date.day.ordinalize} %B %G") if @event.book_by_date %></td>
 </tr>
 <tr>
   <td valign="top">Organiser:</td>
