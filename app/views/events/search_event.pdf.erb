@@ -1,12 +1,12 @@
 <h3>IVC Events: <%= @start_date.to_date.to_formatted_s(:long) %> to <%= @end_date.to_date.to_formatted_s(:long) %>
-<% if @search_title %>
+<% if @search_title.present? %>
 matching '<%= @search_title.to_s %>'
 <% end %>
 </h3>
 
 <% @events.each do |date, events| %>
   <div class="row">
-   <div class="col-xs-12"><h3><%= date.strftime("%A #{date.day.ordinalize} %B %G") %></h3></div>
+   <div class="col-xs-12"><h3><%= date.to_date.strftime("%A #{date.day.ordinalize} %B %G") %></h3></div>
   </div>
   <div class="row">
    <div class="col-xs-12">
