@@ -18,6 +18,17 @@
  <td>Prebook by: </td>
  <td> <%= @event.book_by_date.to_date.strftime("%A #{@event.book_by_date.day.ordinalize} %B %G") if @event.book_by_date %></td>
 </tr>
+<% if @event.public_description.present? %>
+<tr>
+ <td><br/></td>
+</tr>
+<tr>
+ <td colspan="2"><%= simple_format(@event.public_description) %></td>
+</tr>
+<tr>
+ <td><br/></td>
+</tr>
+<% end %>
 <tr>
   <td valign="top">Organiser:</td>
   <td>

@@ -63,6 +63,12 @@
       <div class="col-xs-2">Book by date: </div>
       <div class="col-xs-10"> <%= @event.book_by_date.strftime("%A #{@event.book_by_date.day.ordinalize} %B %G") if @event.book_by_date %></div>
      </div>
+     <% if @event.public_description.present? %>
+     <br/>
+     <div class="row">
+      <div class="col-xs-12"><%= simple_format(@event.public_description) %></div>
+     </div>
+     <% end %>
      <br/>
      <div class="row">
       <div class="col-sm-12">
