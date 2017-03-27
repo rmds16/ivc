@@ -33,6 +33,18 @@ class Admin::UsersController < AdminController
     end
   end
 
+  def destroy
+    user = User.find_by(id: params[:id])
+    if user
+      if user != current_user
+        user.destroy
+      else
+        flash[:danger] = "You are currently logged in as #{user.full_name}"
+      end
+    end
+    redirect_to admin_users_path
+  end
+
   private
  
   def user_params
