@@ -1,0 +1,13 @@
+<h1>IVC Events: <%= @start_date.to_date.to_formatted_s(:long) %> to <%= @end_date.to_date.to_formatted_s(:long) %>
+<% if @search_title.present? %>
+matching '<%= @search_title.to_s %>'
+<% end %>
+</h1>
+
+<% @events.each do |date, events| %>
+ <h2><%= date.to_date.strftime("%A #{date.day.ordinalize} %B %G") %></h2>
+ <% events.each do |event| %>
+   <% @event = event %>
+   <%= render partial: 'helpers/event_details' if @event.present? %>
+ <% end %>
+<% end %>

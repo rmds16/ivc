@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
   load_and_authorize_resource
   before_action :signed_in_user, except: :index
+  respond_to :docx
 
   def new
     @organisers = User.organisers
@@ -245,6 +246,9 @@ class EventsController < ApplicationController
       format.html
       format.pdf do
         render pdf: "ivc_events"
+      end
+      format.docx do
+        render docx: "search_event", filename: "ivc_events"
       end
     end
   end

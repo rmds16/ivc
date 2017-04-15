@@ -52,6 +52,8 @@ gem 'autosize-rails', '1.18.17'
 
 gem 'wicked_pdf', '1.1.0'
 gem 'wkhtmltopdf-binary', '0.12.3.1'
+gem 'responders'
+gem 'htmltoword'
 
 gem 'validates_timeliness', '4.0.2'
 

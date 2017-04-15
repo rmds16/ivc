@@ -50,3 +50,8 @@
   cursor: pointer;
 }
 
+/* Event search */
+
+.download-options span {
+  padding: 2px;
+}

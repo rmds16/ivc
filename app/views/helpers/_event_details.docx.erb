@@ -1,0 +1,25 @@
+<br/>
+<h3><strong><%= @event.title %></strong></h3>
+<br/>
+<p><strong>Time:</strong> <%= @event.start_date.to_formatted_s(:time) %></p>
+<p><strong>Location:</strong> <%= @event.where %></p>
+<p><strong>Post code:</strong> <%= @event.post_map_ref %></p>
+<p><strong>Prebook by:</strong> <%= @event.book_by_date.to_date.strftime("%A #{@event.book_by_date.day.ordinalize} %B %G") if @event.book_by_date %></p>
+<% if @event.public_description.present? %>
+<br/>
+<p><%= strip_tags(simple_format(@event.public_description)) %></p>
+<% end %>
+<br/>
+<p><strong>Organiser:</strong></p>
+<br/>
+<p><strong>Name:</strong> <%= @event.organiser.full_name if @event.organiser %></p>
+<p><strong>Email:</strong> <%= @event.organiser_email %></p>
+<p><strong>Phone:</strong> <%= @event.organiser_phone %></p>
+<% if @event.second_organiser %>
+<br/>
+<p><strong>Second Organiser:</strong></p>
+<br/>
+<p><strong>Name:</strong> <%= @event.second_organiser.full_name if @event.second_organiser %></p>
+<p><strong>Email:</strong> <%= @event.second_organiser_email %></p>
+<p><strong>Phone:</strong> <%= @event.second_organiser_phone %></p>
+<% end %>
