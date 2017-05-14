@@ -10,16 +10,19 @@
 <p><%= strip_tags(simple_format(@event.public_description)) %></p>
 <% end %>
 <br/>
-<p><strong>Organiser:</strong></p>
-<br/>
-<p><strong>Name:</strong> <%= @event.organiser.full_name if @event.organiser %></p>
-<p><strong>Email:</strong> <%= @event.organiser_email %></p>
-<p><strong>Phone:</strong> <%= @event.organiser_phone %></p>
-<% if @event.second_organiser %>
-<br/>
-<p><strong>Second Organiser:</strong></p>
-<br/>
-<p><strong>Name:</strong> <%= @event.second_organiser.full_name if @event.second_organiser %></p>
-<p><strong>Email:</strong> <%= @event.second_organiser_email %></p>
-<p><strong>Phone:</strong> <%= @event.second_organiser_phone %></p>
-<% end %>
+<table width="100%">
+ <tr>
+  <td>
+   <p><%= @event.organiser&.full_name %></p>
+   <p><%= @event.organiser_email %></p>
+   <p><%= @event.organiser_phone %></p>
+  </td>
+  <% if @event.second_organiser %>
+  <td>
+    <p><%= @event.second_organiser&.full_name %></p>
+    <p><%= @event.second_organiser_email %></p>
+    <p><%= @event.second_organiser_phone %></p>
+  </td>
+  <% end %>
+ </tr>
+</table>
