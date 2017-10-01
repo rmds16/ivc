@@ -24,4 +24,7 @@ class Event < ActiveRecord::Base
     user.admin? || user_id == user.id || organiser_id == user.id || second_organiser_id == user.id
   end
 
+  def start_date_humanized
+    start_date.strftime("%A #{start_date.day.ordinalize} %B %G") if start_date
+  end
 end
