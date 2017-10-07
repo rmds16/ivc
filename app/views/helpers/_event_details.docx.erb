@@ -7,7 +7,7 @@
 <p><strong>Prebook by:</strong> <%= @event.book_by_date.to_date.strftime("%A #{@event.book_by_date.day.ordinalize} %B %G") if @event.book_by_date %></p>
 <% if @event.public_description.present? %>
 <br/>
-<p><%= strip_tags(simple_format(@event.public_description)) %></p>
+<p><%= CGI::unescapeHTML(strip_tags(simple_format(@event.public_description))) %></p>
 <% end %>
 <br/>
 <table width="100%">
