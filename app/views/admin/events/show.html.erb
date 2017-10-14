@@ -8,7 +8,8 @@
 <p>Count: <%= @event.attendees.count %></p>
 <br/>
 <% @event.attendees.each do |user| %>
+<% tracking_message = user.tracking_message_for_event(@event) %>
 <div class="row">
-  <div class="col-sm-12"><%= user.full_name %> <%= link_to "Remove", admin_event_leave_path(@event, user_id: user.id), data: { confirm: "Remove #{user.full_name}?" } %></div>
+  <div class="col-sm-12"><%= user.full_name %> <%= link_to "Remove", admin_event_leave_path(@event, user_id: user.id), data: { confirm: "Remove #{user.full_name}?" } %> <% if tracking_message.present? %><div class="<%= tracking_message.opened_at ? 'read' : 'unread' %>" /><% end %></div>
 </div>
 <% end %>
