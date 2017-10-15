@@ -5,7 +5,7 @@ ruby '2.4.0'
 gem 'rails', '5.0.2'
 gem 'rake', '12.0.0'
 # Use sqlite3 as the database for Active Record
-#gem 'sqlite3'
+gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -54,10 +54,6 @@ gem 'wicked_pdf', '1.1.0'
 gem 'wkhtmltopdf-binary', '0.12.3.1'
 gem 'responders'
 gem 'htmltoword'
-
-gem 'ahoy_email'
-
-gem 'pry'
 
 gem 'validates_timeliness', '4.0.2'
 

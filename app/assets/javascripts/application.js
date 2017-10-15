@@ -103,14 +103,6 @@ $(document).ready(function() {
       }
     }
   });
-
-  $('.unread').on("mouseover", function(event) {
-    $(event.target).tooltip({title: 'Confirmation email unread by ' + $(event.target).parent('div').find('span').text(), container: 'body'});
-  });
-
-  $('.read').on("mouseover", function(event) {
-    $(event.target).tooltip({title: 'Confirmation email read by ' + $(event.target).parent('div').find('span').text(), container: 'body'});
-  });
 });
 
 //= require turbolinks

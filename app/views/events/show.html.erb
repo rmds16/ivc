@@ -19,9 +19,8 @@
 <p>Count: <%= @event.attendees.count %></p>
 <br/>
 <% @event.attendees.each do |user| %>
-<% tracking_message = user.tracking_message_for_event(@event) %>
 <div class="row attendee">
-  <div class="col-sm-12"><%= avatar_icon(user) %> <span><%= user.full_name %></span> <%= link_to "Remove", event_remove_attendee_path(@event, user_id: user.id), data: { confirm: "Remove #{user.full_name}?" } if can? :edit, @event %> <% if tracking_message.present? %><div class="<%= tracking_message.opened_at ? 'read' : 'unread' %>" /><% end %></div>
+  <div class="col-sm-12"><%= avatar_icon(user) %> <%= user.full_name %> <%= link_to "Remove", event_remove_attendee_path(@event, user_id: user.id), data: { confirm: "Remove #{user.full_name}?" } if can? :edit, @event %></div>
 </div>
 <% end %>
 

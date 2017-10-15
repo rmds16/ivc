@@ -1,10 +1,9 @@
 class Event < ActiveRecord::Base
   
-  has_many :events_users
   belongs_to :user
   belongs_to :organiser, class_name: 'User', foreign_key: :organiser_id
   belongs_to :second_organiser, class_name: 'User', foreign_key: :second_organiser_id
-  has_many :attendees, through: :events_users, class_name: 'User'
+  has_and_belongs_to_many :attendees, class_name: 'User'
 
   validates :title, presence: true
   validates_date :start_date

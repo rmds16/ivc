@@ -50,30 +50,6 @@
   cursor: pointer;
 }
 
-.read {
-  background-image: image-url('read.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 15px;
-  width: 15px;
-  display: inline-block;
-  margin-left: 5px;
-  background-position: center;
-  cursor: help;
-}
-
-.unread {
-  background-image: image-url('unread.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 15px;
-  width: 20px;
-  display: inline-block;
-  margin-left: 5px;
-  background-position: center;
-  cursor: help;
-}
-
 /* Event search */
 
 .download-options span {

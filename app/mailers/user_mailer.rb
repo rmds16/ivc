@@ -1,10 +1,8 @@
 class UserMailer < ApplicationMailer
-  track only: [:event_signup]
 
-  def event_signup(user, event, events_users_id)
-    @user = user
+  def event_signup(user, event)
+  	@user = user
     @event = event
-    track extra: { events_users_id: events_users_id }
     mail(to: user.email, subject: "IVC Events: Thank you for signing up to #{event.title} on #{event.start_date_humanized}")
   end
 
