@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 
+  has_many :events_users
+  has_many :messages, class_name: "Ahoy::Message"
   has_many :events
-  has_and_belongs_to_many :attended_events, class_name: 'Event'
+  has_many :attended_events, through: :events_users, class_name: 'Event'
   belongs_to :event
 
   acts_as_authentic do |c|
@@ -32,5 +34,10 @@ class User < ActiveRecord::Base
   def deliver_password_reset_instructions!
     reset_perishable_token!
     UserMailer.password_reset_instructions(self).deliver_now
+  end
+
+  def tracking_message_for_event(event)
+    events_user = EventsUser.where(event_id: event.id, user_id: id).order(:id).last
+    messages.find_by(events_users_id: events_user&.id)
   end
 end
