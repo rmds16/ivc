@@ -105,11 +105,11 @@ $(document).ready(function() {
   });
 
   $('.unread').on("mouseover", function(event) {
-    $(event.target).tooltip({title: 'Confirmation email unread by ' + $(event.target).parent('div').find('span').text(), container: 'body'});
+    $(event.target).tooltip({title: 'Confirmation email unread by organiser', container: 'body'});
   });
 
   $('.read').on("mouseover", function(event) {
-    $(event.target).tooltip({title: 'Confirmation email read by ' + $(event.target).parent('div').find('span').text(), container: 'body'});
+    $(event.target).tooltip({title: 'Confirmation email read by organiser', container: 'body'});
   });
 });
 

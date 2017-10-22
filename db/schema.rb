@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171014143205) do
+ActiveRecord::Schema.define(version: 20171105203909) do
 
   create_table "ahoy_messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "token"
@@ -51,8 +51,9 @@ ActiveRecord::Schema.define(version: 20171014143205) do
   end
 
   create_table "events_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer "event_id", null: false
-    t.integer "user_id",  null: false
+    t.integer "event_id",                       null: false
+    t.integer "user_id",                        null: false
+    t.boolean "organiser_read", default: false
     t.index ["event_id", "user_id"], name: "index_events_users_on_event_id_and_user_id", using: :btree
     t.index ["user_id", "event_id"], name: "index_events_users_on_user_id_and_event_id", using: :btree
   end

@@ -50,6 +50,14 @@
   cursor: pointer;
 }
 
+/* Event search */
+
+.download-options span {
+  padding: 2px;
+}
+
+/* My events */
+
 .read {
   background-image: image-url('read.png');
   background-size: contain;
@@ -72,10 +80,4 @@
   margin-left: 5px;
   background-position: center;
   cursor: help;
-}
-
-/* Event search */
-
-.download-options span {
-  padding: 2px;
 }

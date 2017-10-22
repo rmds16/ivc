@@ -36,8 +36,10 @@ class User < ActiveRecord::Base
     UserMailer.password_reset_instructions(self).deliver_now
   end
 
-  def tracking_message_for_event(event)
+  def tracking_class_for_event(event)
     events_user = EventsUser.where(event_id: event.id, user_id: id).order(:id).last
-    messages.find_by(events_users_id: events_user&.id)
+    tracking_messages = messages.where(events_users_id: events_user&.id)
+    return unless tracking_messages
+    tracking_messages.detect { |m| m.opened_at? } ? 'read' : 'unread'
   end
 end

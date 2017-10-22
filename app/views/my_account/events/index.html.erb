@@ -9,12 +9,14 @@
   <th>Title</th>
   <th>Start Date</th>
   <th></th>
+  <th></th>
  </thead>
 <% @events.each do |event| %>
  <tr>
   <td><%= event.title %></td>
   <td><%= event.start_date.to_formatted_s(:long) %></td>
   <td><%= link_to "View", event_path(event) %></td>
+  <td><% if current_user.tracking_class_for_event(event) %><div class="<%= current_user.tracking_class_for_event(event) ? 'read' : 'unread' %>" /><% end %></td>
  </tr>
 <% end %>
 </table>
