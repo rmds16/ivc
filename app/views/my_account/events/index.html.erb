@@ -16,7 +16,7 @@
   <td><%= event.title %></td>
   <td><%= event.start_date.to_formatted_s(:long) %></td>
   <td><%= link_to "View", event_path(event) %></td>
-  <td><% if current_user.tracking_class_for_event(event) %><div class="<%= current_user.tracking_class_for_event(event) ? 'read' : 'unread' %>" /><% end %></td>
+  <td><% if current_user.tracking_class_for_event(event) %><div class="<%= current_user.tracking_class_for_event(event) %>" /><% end %></td>
  </tr>
 <% end %>
 </table>
