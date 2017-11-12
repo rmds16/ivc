@@ -10,99 +10,119 @@
 <%= button_to "Book Out", event_leave_path(@event), method: :get, class: 'pull-right' if @event.attendees.include?(current_user) %>
 </div>
 
+<% if @event.attendees.include?(current_user) %>
+<div class="row">
+  <div class="col-sm-12"><br/></div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="alert alert-success">
+      <div class="row">
+        <div class="col-sm-11">You have booked into this event</div>
+        <div class="col-sm-1"><% if current_user.tracking_class_for_event(@event) %><div class="<%= current_user.tracking_class_for_event(@event) %>" /><% end %></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
 <hr />
 
 <% if can? :edit, @event %>
-
-<h3>Attendees</h3>
-<br/>
-<p>Count: <%= @event.attendees.count %></p>
-<br/>
-<% @event.attendees.each do |user| %>
-<div class="row attendee">
-  <div class="col-sm-12"><%= avatar_icon(user) %> <span><%= user.full_name %></span> <%= link_to "Remove", event_remove_attendee_path(@event, user_id: user.id), data: { confirm: "Remove #{user.full_name}?" } if can? :edit, @event %></div>
-</div>
-<% end %>
-
-<hr />
-
-<% else %>
-<br />
-<% end %>
-
-<div class="row col-sm-12" style="padding-left: 0px;">
- <div class="col-xs-6">
-  <div class='col-xs-2'>
-   <%= link_to "Edit", edit_event_path(@event), method: :get, class: 'pull-left' if can? :edit, @event %>
-  </div>
-  <div class="col-xs-2">
-   <%= link_to "Delete", event_path(@event), method: "delete", class: 'pull-left', data: { confirm: "Remove #{@event.title}?" } if can? :destroy, @event %>
-  </div>
-  <div class="col-xs-8">
-   <% if can? :repeat_once, @event %>
-   <a href="#" class="repeat-toggle" style="padding-left: 10px;">Repeat <span class="caret"></span></a>
-   <% end %>
-  </div>
- </div>
- <div class="col-xs-6">
-   <%= link_to "Close", calendar_path, class: 'pull-right' %>
- </div>
-</div>
-
-<hr/>
-
-<div class="row repeat-dropdown">
- <div class="col-sm-12">
-  <div id="tabs">
-   <ul>
-    <li><a href="#tabs-1">Repeat Once</a></li>
-    <li><a href="#tabs-2">Repeat Weekly</a></li>
-   </ul>
-   <div id="tabs-1">
-    <%= bootstrap_form_for @event, url: event_repeat_once_path(@event), method: :post do |f| %>
-     <%= form_errors_for @event %>
-     <div class="row">
-      <div class="col-sm-12">
-      <%= f.datetime_select(:start_date, default: DateTime.now, order: [:day, :month, :year, :hour, :minute], label: 'Repeat on' ) %>
-      </div>
-     </div>
-     <div class="row">
-      <div class="col-sm-12">
-       <%= f.submit "Repeat Once" %>
-      </div>
-     </div>
+<div class="row">
+<div class="col-sm-12">  
+    <h3>Attendees</h3>
+    <br/>
+    <p>Count: <%= @event.attendees.count %></p>
+    <br/>
+    <% @event.attendees.each do |user| %>
+    <div class="row attendee">
+      <div class="col-sm-12"><%= avatar_icon(user) %> <span><%= user.full_name %></span> <%= link_to "Remove", event_remove_attendee_path(@event, user_id: user.id), data: { confirm: "Remove #{user.full_name}?" } if can? :edit, @event %></div>
+    </div>
     <% end %>
-   </div>
-   <div id="tabs-2">
-    <%= bootstrap_form_for @event, url: event_repeat_weekly_path(@event), method: :post do |f| %>
-     <%= form_errors_for @event %>
-     <div class="row">
-      <div class="col-sm-6">
-       <%= label_tag "Repeat every" %>
-       <%= select_day_of_week(@event.start_date ? @event.start_date.wday : DateTime.now.wday) %>
-      </div>
-      <div class="col-sm-6">
-       <%= label_tag "At" %>
-       <%= select_time(@event.start_date, { prefix: 'weekly_start_time', order: [:hour, :minute] } ) %>
-      </div>
-     </div>
-     <div class="row">
-      <div class="col-sm-6">
-       <%= label_tag "From" %>
-       <%= select_date(@event.start_date, { prefix: 'weekly_start_date', order: [:day, :month, :year] } ) %>
-      </div>
-      <div class="col-sm-6">
-       <%= label_tag "To" %>
-       <%= select_date(@event.start_date ? @event.start_date + 1.month : DateTime.now, { prefix: 'weekly_end_date', order: [:day, :month, :year] } ) %>
-      </div>
-     </div>
-     <div class="row">
-      <div class="col-sm-12">
-       <%= f.submit "Repeat Weekly" %>
-      </div>
-     </div> 
+
+    <hr />
+
+    <% else %>
+    <br />
     <% end %>
-   </div>
+
+    <div class="row col-sm-12" style="padding-left: 0px;">
+     <div class="col-xs-6">
+      <div class='col-xs-2'>
+       <%= link_to "Edit", edit_event_path(@event), method: :get, class: 'pull-left' if can? :edit, @event %>
+      </div>
+      <div class="col-xs-2">
+       <%= link_to "Delete", event_path(@event), method: "delete", class: 'pull-left', data: { confirm: "Remove #{@event.title}?" } if can? :destroy, @event %>
+      </div>
+      <div class="col-xs-8">
+       <% if can? :repeat_once, @event %>
+       <a href="#" class="repeat-toggle" style="padding-left: 10px;">Repeat <span class="caret"></span></a>
+       <% end %>
+      </div>
+     </div>
+     <div class="col-xs-6">
+       <%= link_to "Close", calendar_path, class: 'pull-right' %>
+     </div>
+    </div>
+
+    <hr/>
+
+    <div class="row repeat-dropdown">
+     <div class="col-sm-12">
+      <div id="tabs">
+       <ul>
+        <li><a href="#tabs-1">Repeat Once</a></li>
+        <li><a href="#tabs-2">Repeat Weekly</a></li>
+       </ul>
+       <div id="tabs-1">
+        <%= bootstrap_form_for @event, url: event_repeat_once_path(@event), method: :post do |f| %>
+         <%= form_errors_for @event %>
+         <div class="row">
+          <div class="col-sm-12">
+          <%= f.datetime_select(:start_date, default: DateTime.now, order: [:day, :month, :year, :hour, :minute], label: 'Repeat on' ) %>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-sm-12">
+           <%= f.submit "Repeat Once" %>
+          </div>
+         </div>
+        <% end %>
+       </div>
+       <div id="tabs-2">
+        <%= bootstrap_form_for @event, url: event_repeat_weekly_path(@event), method: :post do |f| %>
+         <%= form_errors_for @event %>
+         <div class="row">
+          <div class="col-sm-6">
+           <%= label_tag "Repeat every" %>
+           <%= select_day_of_week(@event.start_date ? @event.start_date.wday : DateTime.now.wday) %>
+          </div>
+          <div class="col-sm-6">
+           <%= label_tag "At" %>
+           <%= select_time(@event.start_date, { prefix: 'weekly_start_time', order: [:hour, :minute] } ) %>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-sm-6">
+           <%= label_tag "From" %>
+           <%= select_date(@event.start_date, { prefix: 'weekly_start_date', order: [:day, :month, :year] } ) %>
+          </div>
+          <div class="col-sm-6">
+           <%= label_tag "To" %>
+           <%= select_date(@event.start_date ? @event.start_date + 1.month : DateTime.now, { prefix: 'weekly_end_date', order: [:day, :month, :year] } ) %>
+          </div>
+         </div>
+         <div class="row">
+          <div class="col-sm-12">
+           <%= f.submit "Repeat Weekly" %>
+          </div>
+         </div> 
+        <% end %>
+       </div>
+      </div>
+     </div>
+    </div>
   </div>
- </div>
 </div>
