@@ -38,8 +38,8 @@ class User < ActiveRecord::Base
 
   def tracking_class_for_event(event)
     events_user = EventsUser.where(event_id: event.id, user_id: id).order(:id).last
-    tracking_messages = messages.where(events_users_id: events_user&.id)
-    return unless tracking_messages
+    tracking_messages = Ahoy::Message.where(events_users_id: events_user&.id)
+    return if tracking_messages.empty?
     tracking_messages.detect { |m| m.opened_at? } ? 'read' : 'unread'
   end
 end
