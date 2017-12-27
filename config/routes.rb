@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root "main#calendar"
+  root "main#introduction"
 
   match 'calendar' => 'main#calendar', via: %i{get}
   match 'introduction' => 'main#introduction', via: %i{get}
