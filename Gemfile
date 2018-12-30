@@ -28,7 +28,7 @@ gem 'passenger', '5.1.1'
 
 gem 'mysql2', '0.4.5'
 
-gem 'authlogic', '3.5.0'
+gem 'authlogic', '4.4.2'
 
 gem 'will_paginate', '3.1.5'
 gem 'will_paginate-bootstrap'
