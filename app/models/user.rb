@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
   has_many :events_users
-  has_many :messages, class_name: "Ahoy::Message"
   has_many :events
   has_many :attended_events, through: :events_users, class_name: 'Event'
   belongs_to :event
@@ -38,8 +37,6 @@ class User < ActiveRecord::Base
 
   def tracking_class_for_event(event)
     events_user = EventsUser.where(event_id: event.id, user_id: id).order(:id).last
-    tracking_messages = Ahoy::Message.where(events_users_id: events_user&.id)
-    return if tracking_messages.empty?
-    tracking_messages.detect { |m| m.opened_at? } ? 'read' : 'unread'
+    events_user.organiser_read? ? 'read' : 'unread'
   end
 end

@@ -55,8 +55,6 @@ gem 'wkhtmltopdf-binary', '0.12.3.1'
 gem 'responders'
 gem 'htmltoword'
 
-gem 'ahoy_email'
-
 gem 'pry'
 
 gem 'validates_timeliness', '4.0.2'

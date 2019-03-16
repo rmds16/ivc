@@ -93,10 +93,10 @@ class EventsController < ApplicationController
 
     flash[:danger] = attendees "An error has occurred, unable to subscribe to event" unless @event.attendees << current_user
 
-    events_users_id = EventsUser.where(event_id: @event.id, user_id: current_user).order(:id).last&.id
+    events_users_token = EventsUser.where(event_id: @event.id, user_id: current_user).order(:id).last&.token
 
     UserMailer.event_signup(current_user, @event).deliver_now
-    UserMailer.organiser_event_signup(@event.organiser, current_user, @event, events_users_id).deliver_now if @event.organiser
+    UserMailer.organiser_event_signup(@event.organiser, current_user, @event, events_users_token).deliver_now if @event.organiser
     UserMailer.organiser_event_signup(@event.second_organiser, current_user, @event, nil).deliver_now if @event.second_organiser
 
     redirect_to event_path(@event)
@@ -256,6 +256,17 @@ class EventsController < ApplicationController
 
   def search_title
     render json: Event.where("title like '%#{params[:term]}%'").pluck(:title).uniq.to_json
+  end
+
+  def acknowledge_user
+    event_users = EventsUser.find_by(token: params[:token])
+    return if event_users&.organiser_read?
+    event = event_users&.attended_event
+    user = event_users&.attendee
+    event_users.update_attribute(:organiser_read, true)
+    UserMailer.organiser_event_opened(user, event).deliver_now
+    flash[:success] = "Event signup acknowledged!"
+    redirect_to calendar_path
   end
 
   private

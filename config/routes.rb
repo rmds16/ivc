@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   post 'password_reset' => 'password_reset#create'
   get 'password_reset/:id/' => 'password_reset#edit', as: :password_reset_edit
   post 'password_reset/:id/' => 'password_reset#update', as: :password_reset_update
+  get ':token/acknowledge' => 'events#acknowledge_user', as: :acknowledge_user
 
   namespace :admin do
     resources :users
