@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   load_and_authorize_resource
-  before_action :signed_in_user, except: :index
+  before_action :signed_in_user, except: [:index, :acknowledge_user]
   respond_to :docx
 
   def new
@@ -260,7 +260,10 @@ class EventsController < ApplicationController
 
   def acknowledge_user
     event_users = EventsUser.find_by(token: params[:token])
-    return if event_users&.organiser_read?
+    if event_users&.organiser_read?
+      redirect_to calendar_path
+      return
+    end
     event = event_users&.attended_event
     user = event_users&.attendee
     event_users.update_attribute(:organiser_read, true)
