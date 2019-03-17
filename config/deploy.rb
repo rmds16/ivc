@@ -16,6 +16,7 @@ set :use_sudo, false
 
 set :deploy_via, :copy
 
+set :linked_files, %w{config/master.key}
 set :linked_files, %w{config/database.yml}
 
 # Default value for :format is :airbrussh.
