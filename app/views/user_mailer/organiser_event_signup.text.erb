@@ -1,6 +1,6 @@
 Hi <%= @organiser.full_name %>
 
-<%= @user.full_name %> has successfully signed up to the event <%= @event.title %> on <%= @event.start_date_humanized %>.
+<%= @user.full_name %> (<%= @user.email %>) has successfully signed up to the event <%= @event.title %> on <%= @event.start_date_humanized %>.
 
 <% if @token %>
 Copy and paste this url into a web browser to acknowledge reading this email: <%= acknowledge_user_url(token: @token) %>

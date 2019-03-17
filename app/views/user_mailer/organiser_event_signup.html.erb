@@ -6,7 +6,7 @@
   <body>
     <h3>Hi <%= @organiser.full_name %></h3>
     <p>
-      <%= @user.full_name %> has successfully signed up to the event <%= @event.title %> on <%= @event.start_date_humanized %>.
+      <%= @user.full_name %> (<%= @user.email %>) has successfully signed up to the event <%= @event.title %> on <%= @event.start_date_humanized %>.
     </p>
     <% if @token %>
     <p>Please click <%= link_to "Here", acknowledge_user_url(token: @token) %></a> to acknowledge receiving this email.</p>
