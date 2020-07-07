@@ -41,6 +41,9 @@ Rails.application.routes.draw do
   match 'trips_abroad' => 'main#trips_abroad', via: %i{get}
   match 'weekends_away' => 'main#weekends_away', via: %i{get}
   match 'activities' => 'main#activities', via: %i{get}
+  match 'areas_covered' => 'main#areas_covered', via: %i{get}
+  match 'houses_gardens' => 'main#houses_gardens', via: %i{get}
+  match 'seaside_breaks' => 'main#seaside_breaks', via: %i{get}
   
   match 'signin' => "user_sessions#new", as: :signin, via: %i{get put post patch delete}
   match 'signout' => "user_sessions#destroy", as: :signout, via: %i{get put post patch delete}

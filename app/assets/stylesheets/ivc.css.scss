@@ -5,31 +5,35 @@ body {
         margin-left:   0px;
         margin-bottom:   0px;
         margin-right:   0px;
-/*		background-color:#BF262D; */
-		background-image:   url(asset_path('background_1.png')); 
+	background-color:#E4DFEC;
+/*	background-image:   url(asset_path('background_1.png'));  */
 }
 
 div.wrapper {
-          margin-left:   0px;
-          margin-right:  0px;
-          width: 1000px;
-          background-color:#E1DCE7; 
+        margin-left:   0px;
+        margin-right:  0px;
+        width:      1000px;
+        background-color:#E1DCE7; 
 }	 
 
 div.wrapper-foot {
-          margin-left:   0px;
-          margin-right:  0px;
-          width: 1000px;
+        border-top:    3px solid silver;
+        margin-left:   0px;
+        margin-right:  0px;
+        vertical-align:  middle;
+        height:       40px;
+        width:      1000px;
+        background-color:#E1DCE7;
 }
 
-/* Menu boxes */
+/* Menu boxes *****************************************************************/
 div.mbox {
-        margin-left:    4px;
+        margin-left:    0px;
         margin-right:   4px;
-        margin-top:   4px;
-        margin-bottom:   10px;
- /*       background-image:   url(asset_path('lilac_rect.png')); */
-		background-color: #FBFCE6;
+        margin-top:     0px;
+        margin-bottom:  0px;
+ /*     background-image:   url(asset_path('lilac_rect.png')); */
+	background-color: #FBFCE6;
         border:   0px solid black;
         padding-bottom:   0px;
         overflow:   hidden;
@@ -37,19 +41,73 @@ div.mbox {
 }
 /* Menu boxes are divided in title and data, this is the title */
 div.mbox-title {
-        background-image:    url(asset_path('vermillion_alt_title_30px.png'));
+        background-image:    url(asset_path('header_bgd_dark_red.png'));
         border-bottom:   1px solid black;
         color:   white;
         font-family:   Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
-        font-size:   15px;
-        overflow:   hidden;
-        text-align:   center;
+        font-size:     16px;
+        overflow:    hidden;
+        text-align:  center;
+        padding-top:    7px;
         padding-left:   0px;
-        padding-right:   0px;
-        margin-bottom:   0px;
-        width:   200px;
-		height: 20px;
+        padding-right:  0px;
+        margin-top:     0px;
+        margin-bottom:  0px;
+        width:        200px;
+	height:        30px;
 }
+
+/* And this is the menu data */
+div.mbox-data {
+        overflow:    hidden;
+        color:   black;
+        padding-top :   0px;
+        padding-left:   0px;
+        margin-left:    0px;
+        margin-right:   0px;
+        margin-top:     0px;
+      /*	vertical-align: middle; */
+        font-family:    Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size:      20px;
+        width:          200px;
+	height:         30px;
+        background-image: url(asset_path('lilac_menu_bar_300_100px.png')); 
+        border-bottom:  1px solid #53158D;
+}
+
+/* Links in modules */
+.separator, .bannertext, .linkmenu, .linkmodule {
+        overflow:        hidden;
+        color:           black;
+        margin-left:     5px;
+        margin-right:    0px;
+        margin-top:      0px;
+        padding-left:    0px;
+        font-family:     Tahoma,Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size:       15px;
+        background-image: url(asset_path('lilac_menu_bar_300_100px.png')); 
+        border-bottom:   1px solid black;
+	width:           200px;
+	height:          30px;
+        text-decoration: none;
+}
+.separator:hover, .bannertext:hover, .linkmenu:hover, .linkmodule:hover {
+        font-family:     Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
+        margin-left:     5px;
+        margin-top:      5px;
+        padding-left:    0px;
+        padding-top:     0px;
+        text-align:      left;
+        vertical-align:  middle;
+        font-size:       17px;
+	display:         block;
+        background-image: url(asset_path('dark_lilac_menu_bar_300_100px.png'));
+	height:          30px;
+        color:           #53158D;
+        text-decoration: none;
+}
+
+/* This code is not used ****************************************************** 
 div.mbox-title table {
     width: 100%;
 }
@@ -57,47 +115,36 @@ div.mbox-trailer {
 	background-image: url(asset_path('red_box_title_30px_bevel_cntr_btm.png'));
 	height: 20px;
 }
-/* And this is the menu data */
-div.mbox-data {
-        overflow:    hidden;
-        color:   black;
-        margin-left:   0px;
-        margin-right:   0px;
-        margin-top:   0px;
-		vertical-align: middle;
-        font-family:   Verdana, Geneva, Arial, Helvetica, sans-serif;
-        font-size:   12px;
-        background-image: url(asset_path('lilac_menu_bar.png'));
-        border-bottom:   1px solid #53158D;
-		width:   200px;
-		height:  20px;
-}
+*/
+/* Not sure this is used
 div.mbox-hover {
-        overflow:    hidden;
-        color:   black;
-        margin-left:   0px;
+        overflow:       hidden;
+        color:          black;
+        margin-left:    0px;
         margin-right:   0px;
-        margin-top:   0px;
-        font-family:   Verdana, Geneva, Arial, Helvetica, sans-serif;
-        font-size:   20px;
-        background-image: url(asset_path('lilac_bar.png'));
-		width:   200px;
-		height:  20px;
+        margin-top:     0px;
+        font-family:    Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size:      20px;
+        background-image: url(asset_path('dark_lilac_bar_300_100px.png'));
+	width:          200px;
+	height:         30px;
 }
+*******************************************************************************
+*******************************************************************************/
 
 /* Content box */
 div.cbox {
         margin-left:    4px;
         margin-right:   4px;
-        margin-top:   4px;
-        margin-bottom:   0px;
+        margin-top:     0px;
+        margin-bottom:  0px;
 /*        background-image:   url(asset_path('menugrad.png')); */
 /*        background:    #f7f7f7; */
-		background-image:   url(asset_path('lilac_cbox_rect_2.jpg')); 
-        border:   0px solid black;
-        padding-bottom:   30px;
-        overflow:   hidden;
-/*        width:   100%; */
+	background-image:   url(asset_path('lilac_cbox_rect_2.jpg')); 
+        border:         0px solid black;
+        padding-bottom: 30px;
+        overflow:     hidden;
+/*      width:          100%; */
 }
 
 div.cbox strong {
@@ -106,18 +153,19 @@ div.cbox strong {
 
 /* Content boxes are divided in title and data, this is the title */
 div.cbox-title {
-        background-image:    url(asset_path('cbox_title_vermillion_780.png'));
+        background-image:    url(asset_path('header_bgd_dark_red.png'));
         border-bottom:   1px solid black;
         color:   white;
         font-family:   Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
-        font-size:   15px;
-        overflow:   hidden;
+        font-size:      16px;
+        overflow:     hidden;
         text-align:   center;
-        padding-left:   0px;
+        padding-top:     7px;
+        padding-left:    0px;
         padding-right:   0px;
         margin-bottom:   1px;
-		height: 20px;
-/*        width:   100%;         */
+	height:         30px;
+/*      width:          100%;         */
 }
 /* div.cbox-title table {
     width: 100%;
@@ -127,15 +175,15 @@ div.cbox-title {
 /* And this is the content data */
 div.cbox-data {
         overflow:    hidden;
-        color:   black;
-        margin-left:   15px;
-        margin-right:   15px;
-        margin-top:   5px;
-        font-family:   Verdana, Geneva, Arial, Helvetica, sans-serif;
-        font-size:   14px;
-        padding-top:      10px;
-        padding-left:   0px;
-        padding-right:   0px;
+        color:       black;
+        margin-left:  15px;
+        margin-right: 15px;
+        margin-top:    5px;
+        font-family:  Verdana, Geneva, Arial, Helvetica, sans-serif;
+        font-size:    14px;
+        padding-top:  10px;
+        padding-left:  0px;
+        padding-right: 0px;
       /*  background: none; */
      	background-image:   url(asset_path('lilac_cbox_rect_2.jpg')); 
 /*      width:   100%;          */
@@ -151,46 +199,46 @@ div.cbox-photo {
         padding-top:    0px;
         padding-left:   0px;
         padding-right:  0px;
+        padding-bottom: 0px;
       /*  background: none; */
      	background-image:   url(asset_path('lilac_cbox_rect_2.jpg')); 
 /*      width:   100%;          */
 }
 div.cbox-trailer {
         background-image: url(asset_path('cbox_trailer_780.png'));
-	    margin-left:    4px;
+	margin-left:    4px;
         margin-right:   4px;
-		height:        20px;
-        overflow:   hidden;
+        height:        20px;
+        overflow:    hidden;
         padding-left:   0px;
-        padding-right:   0px;
+        padding-right:  0px;
 }
 
-/* Links in modules */
-.separator, .bannertext, .linkmenu, .linkmodule {
+div.cbox-photobox {
+        padding-top:    5px;
+        padding-left:   2px;
+        padding-right:  2px;
+        padding-bottom: 0px;
+
+}
+div.cbox-photo-titles {
         overflow:    hidden;
         color:   black;
-        margin-left:   0px;
+        margin-left:    10px;
         margin-right:   0px;
-        margin-top:   0px;
-        font-family:   Tahoma,Verdana, Geneva, Arial, Helvetica, sans-serif;
-        font-size:   12px;
-        text-align:   center;
-        background-image: url(asset_path('lilac_menu_bar.png'));
-        border-bottom:   1px solid black;
-		width:   200px;
-		height:  20px;
-        text-decoration:   none;
+        margin-top:     0px;
+        font-family:    Comic Sans MS, Verdana, Geneva, Arial, sans-serif;
+        font-size:      25px;
+        font-style:     italic;
+        color:          red;
+        padding-top:    0px;
+        padding-left:   0px;
+        padding-right:  0px;
+        padding-bottom: 0px;
+      /*  background: none; */
+     	background-image:   url(asset_path('lilac_cbox_rect_2.jpg')); 
+/*      width:   100%;          */
 }
-.separator:hover, .bannertext:hover, .linkmenu:hover, .linkmodule:hover {
-        font-family:    Tahoma, Verdana, Geneva, Arial, Helvetica, sans-serif;
-        font-size:   15px;
-		display:     block;
-        background-image: url(asset_path('dark_lilac_menu_bar.png'));
-		height:  20px;
-        color:   #53158D;
-        text-decoration:   none;
-}
-
 td {
   padding: 2px;
 }
