@@ -1,5 +1,6 @@
 <%#
  June 2020    New page to display 9 photos specified in main_controller.rb
+ July 2020    Modified to make all images width to add up to 780px per row
 %>
 
 <div class="cbox">
@@ -9,18 +10,18 @@
 <div class="cbox-photo">
   <table width="780px" align="center">
       <tr>
-        <td valign=top width="250px">
+        <td valign=top width="260px">
           <div class="cbox-photobox">
            <%#<img src="IMG_5496_250_250.JPG" > needs to be in public folder %>
            <%= image_tag(@image_1, :width => "100%" ) %>
           </div>
         </td>
-        <td valign=top width="250px">
+        <td valign=top width="260px">
           <div class="cbox-photobox">
             <%= image_tag(@image_2, :width => "100%" ) %>
           </div>
         </td>
-        <td valign=top width="250px">
+        <td valign=top width="260px">
           <div class="cbox-photobox">
             <%= image_tag(@image_3, :width => "100%" ) %>
           </div>
@@ -28,13 +29,13 @@
       </tr>
       
       <tr>
-        <td valign=top width="250px">
+        <td valign=top width="260px">
           <div class="cbox-photobox">
            <%#<img src="IMG_5496_250_250.JPG" > needs to be in public folder %>
            <%= image_tag(@image_4, :width => "100%" ) %>
           </div>
         </td>
-        <td valign=top width="250px">
+        <td valign=top width="260px">
           <div class="cbox-photobox">
             <%= image_tag(@image_5, :width => "100%" ) %>
           </div>
@@ -47,18 +48,18 @@
       </tr>
       
            <tr>
-        <td valign=top width="250px">
+        <td valign=top width="260px">
           <div class="cbox-photobox">
            <%#<img src="IMG_5496_250_250.JPG" > needs to be in public folder %>
            <%= image_tag(@image_7, :width => "100%" ) %>
           </div>
         </td>
-        <td valign=top width="250px">
+        <td valign=top width="260px">
           <div class="cbox-photobox">
             <%= image_tag(@image_8, :width => "100%" ) %>
           </div>
         </td>
-        <td valign=top width="250px">
+        <td valign=top width="260px">
           <div class="cbox-photobox">
             <%= image_tag(@image_9, :width => "100%" ) %>
           </div>
