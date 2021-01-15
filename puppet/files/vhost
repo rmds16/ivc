@@ -1,0 +1,21 @@
+<VirtualHost *:80>
+  ServerName www.hertsbedsivc.co.uk
+  # ServerName ec2-35-176-49-13.eu-west-2.compute.amazonaws.com
+  # Redirect / https://aws.da-silva.me.uk/
+  # ServerAlias aws.da-silva.me.uk
+  ServerAdmin webmaster@localhost
+  DocumentRoot /var/www/ivc/current/public
+  RailsEnv production
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  # RewriteRule (.*) https://%{HTTP_HOST}:443%{REQUEST_URI}
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel warn
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+  <Directory "/var/www/ivc/current/public">
+      Options FollowSymLinks
+      Require all granted
+  </Directory>
+</VirtualHost>
