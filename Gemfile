@@ -59,6 +59,8 @@ gem 'pry'
 
 gem 'validates_timeliness', '4.0.2'
 
+gem 'tzinfo-data'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -69,7 +71,7 @@ gem 'validates_timeliness', '4.0.2'
 gem 'capistrano-rails', group: :development
 gem 'capistrano-bundler', require: false
 gem 'capistrano-rvm', github: 'capistrano/rvm', require: false
-gem 'capistrano-passenger', group: :development
+# gem 'capistrano-passenger', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
